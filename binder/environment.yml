@@ -1,4 +1,4 @@
-name: treat_sim_st_dev
+name: stars_streamlit
 channels:
   - conda-forge
 dependencies:
