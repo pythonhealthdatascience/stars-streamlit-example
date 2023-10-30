@@ -68,7 +68,7 @@ A containerised version of the model is available from Dockerhub.  Follow the li
 
 * https://hub.docker.com/r/tommonks01/streamlit_sim
 
-<!-- ## How to create the model interface locally
+## How to create the model interface locally
 
 Alternatively you may wish to create the website on your local machine.  
 
@@ -77,7 +77,7 @@ Alternatively you may wish to create the website on your local machine.
 Either clone the repository using git or click on the green "code" button and select "Download Zip".
 
 ```bash
-git clone https://github.com/pythonhealthdatascience/stars-simpy-examplar-docs
+git clone https://github.com/pythonhealthdatascience/stars-streamlit-example
 ```
 
 ### Installing dependencies
@@ -93,17 +93,20 @@ conda env create -f binder/environment.yml
 To activate the environment issue the following command:
 
 ```bash
-conda activate stars_docs`
+conda activate stars_streamlit`
 ```
 
-### Building the book
+### Running the interface to the model
 
 In the directory (folder) containing the code issue the following command via the terminal (or cmd prompt/powershell on windows)
 
 ```bash
-jb build .
+streamlit run Overview.py
 ```
 
-> The configutation of the book has been setup to re-run all of the notebooks.  It may take a few minutes to execute on your local machine.
+This should open your browser and launch the interface automatically.  Alternatively you can navigate to the following URL.
 
-When the build is complete Jupyter book will display a hyper-link to the book that has been built on your machine.  Click on the link (or copy paste into a browser) to run it. -->
+```bash
+http://localhost:8501
+```
+
