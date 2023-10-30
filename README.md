@@ -14,7 +14,7 @@ The materials and methods in this repository support work towards developing the
 
 * All artifacts in this repository are linked to study researchers via ORCIDs;
 * Model code is made available under the MIT license;
-* Python dependencies are managed through `conda`;`
+* Python dependencies are managed through `conda`;
 * The code builds a `streamlit` web application that can be used to run the model (web app);
 * The materials are deposited and made citatable using Zenodo;
 * The models are sharable with other researchers and the NHS without the need to install software.
