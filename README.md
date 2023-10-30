@@ -51,7 +51,13 @@ We adapt a textbook example from Nelson (2013): a terminating discrete-event sim
 
 ## Streamlit community cloud deployment of the code
 
+* https://stars-simpy-example.streamlit.app/
+
+A backup and replica of the web app is available here:
+
 * https://treat-sim.streamlit.app
+
+> Please note that we have deployed this to the a free tier service.  If the app has not been used for a time then you will need to "wake up" the app.  Please be patient while it reboots.
 
 
 ## Online documentation produced by Jupyter-book
