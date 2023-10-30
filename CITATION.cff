@@ -3,7 +3,7 @@
 
 cff-version: 1.2.0
 title: >-
-  # Towards Sharing Tools and Artifacts for Reusable
+  Towards Sharing Tools and Artifacts for Reusable
   Simulation: deploying a `simpy` model as a web app
 message: >-
   If you use this software, please cite it using the
