@@ -11,5 +11,5 @@ dependencies:
   - scipy=1.6.1
   - simpy=4.0.1
   - pip:
-    - streamlit
+    - streamlit==1.31.1
     - streamlit-bokeh-events==0.1.2
