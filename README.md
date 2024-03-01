@@ -1,6 +1,6 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10055169.svg)](https://doi.org/10.5281/zenodo.10055169)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/release/python-360+/)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/release/python-3100+/)
 [![Read the Docs](https://readthedocs.org/projects/pip/badge/?version=latest)](https://pythonhealthdatascience.github.io/stars-simpy-example-docs)
 [![License: MIT](https://img.shields.io/badge/ORCID-0000--0001--5274--5037-brightgreen)](https://orcid.org/0000-0001-5274-5037)
 [![License: MIT](https://img.shields.io/badge/ORCID-0000--0003--2631--4481-brightgreen)](https://orcid.org/0000-0003-2631-4481)
@@ -26,7 +26,7 @@ The materials and methods in this repository support work towards developing the
 
 ## Citation
 
-> Monks, T., & Harper, A. (2023). Towards Sharing Tools and Artifacts for Reusable Simulation: deploying a `simpy` model as a web app (v1.2.0). Zenodo. https://doi.org/10.5281/zenodo.10055169
+> Monks, T., & Harper, A. (2023). Towards Sharing Tools and Artifacts for Reusable Simulation: deploying a `simpy` model as a web app (v2.0.0). Zenodo. https://doi.org/10.5281/zenodo.10055169
 
 ```bibtex
 @software{monks_streamlit_example,
@@ -37,7 +37,7 @@ The materials and methods in this repository support work towards developing the
   month        = oct,
   year         = 2023,
   publisher    = {Zenodo},
-  version      = {v1.2.0},
+  version      = {v2.0.0},
   doi 	       = {10.5281/zenodo.10055169},
   url	       = {https://doi.org/10.5281/zenodo.10055169}, 
 }
