@@ -13,15 +13,16 @@ The model used in this example is based on Nelson (2013).  Please credit this wo
 Please cite this model as
 
 ```
-@software{monks_thomas_2022_6860711,
+@software{monks_harper_2023_10055169,
   author       = {Monks, Thomas and
                   Harper, Alison},
-  title        = {TomMonks/treat\_sim\_streamlit: v1.0.0},
-  month        = jul,
-  year         = 2022,
+  title        = {{Towards Sharing Tools and Artifacts for Reusable 
+                   Simulation: deploying a `simpy` model as a web app}},
+  month        = oct,
+  year         = 2023,
   publisher    = {Zenodo},
-  version      = {v1.0.0},
-  doi          = {10.5281/zenodo.6860711},
-  url          = {https://doi.org/10.5281/zenodo.6860711}
+  version      = {v1.2.0},
+  doi          = {10.5281/zenodo.10055169},
+  url          = {https://doi.org/10.5281/zenodo.10055169}
 }
 ```
