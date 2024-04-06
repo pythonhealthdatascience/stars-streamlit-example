@@ -5,6 +5,8 @@ This work is produced using entirely free and open software in python.
 
 This model is independent research supported by the National Institute for Health Research Applied Research Collaboration South West Peninsula. The views expressed in this publication are those of the author(s) and not necessarily those of the National Institute for Health Research or the Department of Health and Social Care.
 
+> Detailed model documentation can be found here: https://pythonhealthdatascience.github.io/stars-simpy-example-docs 
+
 ## Modelling and Simulation Software
 
 The model is written in `python3` and `simpy`.  The simulation libary `simpy` uses a **process based model worldview**.  Given its simplicity it is a highly flexible discrete-event simulation package.

@@ -406,9 +406,11 @@ class Scenario:
         Create the distributions used by the model and initialise 
         the random seeds of each.
         '''
-        # create random number streams
-        rng_streams = np.random.default_rng(self.random_number_set)
-        self.seeds = rng_streams.integers(0, 999999999, size=N_STREAMS)
+        # MODIFICATION. Better method for producing n non-overlapping streams
+        seed_sequence = np.random.SeedSequence(self.random_number_set)
+    
+        # Generate n high quality child seeds
+        self.seeds = seed_sequence.spawn(N_STREAMS)
 
         # create distributions
         

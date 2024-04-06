@@ -28,11 +28,9 @@ SC_TABLE = '''
 TITLE = 'Run multiple experiments'
 INFO_2 = '### Run 5 pre-specified scenarios and compare results.'
 
-@st.cache
 def convert_df(df):
    return df.to_csv().encode('utf-8')
 
-@st.cache(show_spinner=False)
 def run_experiments(scenarios, n_reps):
     return  md.run_scenario_analysis(scenarios, 
                                      md.DEFAULT_RESULTS_COLLECTION_PERIOD,
