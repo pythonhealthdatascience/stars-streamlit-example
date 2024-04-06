@@ -34,8 +34,7 @@ The materials and methods in this repository support work towards developing the
                   Harper, Alison},
   title        = {{Towards Sharing Tools and Artifacts for Reusable 
                    Simulation: deploying a `simpy` model as a web app}},
-  month        = oct,
-  year         = 2023,
+  year         = 2024,
   publisher    = {Zenodo},
   version      = {v2.1.0},
   doi 	       = {10.5281/zenodo.10935920},
