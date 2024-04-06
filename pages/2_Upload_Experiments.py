@@ -53,17 +53,14 @@ def create_scenarios(df_scenarios):
 
     return cust_scenarios
 
-@st.cache(show_spinner=False)
 def convert_df(df):
    return df.to_csv().encode('utf-8')
 
-@st.cache(show_spinner=False)
 def run_experiments(scenarios, n_reps):
     return  md.run_scenario_analysis(scenarios, 
                                      md.DEFAULT_RESULTS_COLLECTION_PERIOD,
                                      n_reps)
 
-@st.cache
 def results_as_summary_frame(results):
     return md.scenario_summary_frame(results).round(1)
 
