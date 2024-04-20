@@ -1,6 +1,6 @@
 # About
 
-This work is produced using entirely Free and Open Source Software in python.  
+This work is produced using entirely Free and Open Source Software in Python.  
 
 This model is independent research supported by the National Institute for Health Research Applied Research Collaboration South West Peninsula. The views expressed in this publication are those of the author(s) and not necessarily those of the National Institute for Health Research or the Department of Health and Social Care.
 
@@ -30,10 +30,16 @@ One of the benefits of a package like `simpy` is that it is written in standard 
 
 > Detailed documentation for `simpy` and additional models can be found here: https://simpy.readthedocs.io/en/latest/
 
-
 ## Web App
 
 The interactive web application was developed in `streamlit` and deployed freely, but with limited computational resources, on streamlit cloud.  
 
 > Details and documentation for both of these can be found here: https://docs.streamlit.io/ 
 
+## Tutorial material
+
+A beginner tutorial is available to support using `simpy` and `streamlit`. 
+
+> Monks, Thomas, & Harper, Alison. (2023). SimPy and StreamLit Tutorial Materials for Healthcare Discrete-Event Simulation (v1.1.0). Zenodo. https://doi.org/10.5281/zenodo.8159080
+
+> Online interactive tutorial: https://health-data-science-or.github.io/simpy-streamlit-tutorial 
