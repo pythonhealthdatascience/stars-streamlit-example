@@ -7,6 +7,7 @@ Links to:
 * Documentation
 * Researchers via ORCIDs
 * Sim software
+* Simulation + Streamlit Tutorial
 ( Anything else relevant)
 '''
 
