@@ -6,7 +6,7 @@
 [![License: MIT](https://img.shields.io/badge/ORCID-0000--0003--2631--4481-brightgreen)](https://orcid.org/0000-0003-2631-4481)
 [<img src="https://img.shields.io/static/v1?label=dockerhub&message=images&color=important?style=for-the-badge&logo=docker">](https://hub.docker.com/r/tommonks01/treat_sim)
 
-# Towards Sharing Tools and Artifacts for Reusable Simulation: deploying a `simpy` model as a web app
+# 💫 Towards Sharing Tools and Artifacts for Reusable Simulation: deploying a `simpy` model as a web app
 
 ## Overview
 
