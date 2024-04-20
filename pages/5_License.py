@@ -11,6 +11,7 @@ LICENSE_PAGE_TXT = (
     + "stars-streamlit-example/dev/txt/license_page.md"
 )
 
+
 def read_file_contents(path):
     """
     Download the content of a file from the GitHub Repo and return as a utf-8 string
@@ -33,7 +34,8 @@ def read_file_contents(path):
     return response.read().decode("utf-8")
 
 # show license header and badge
-st.markdown(read_file_contents(LICENSE_PAGE_TXT))
+#st.markdown(read_file_contents(LICENSE_PAGE_TXT))
+st.markdown("# License")
 
 # show MIT license.
 license_txt = read_file_contents(LICENSE_FILE)
