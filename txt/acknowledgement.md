@@ -1,4 +1,3 @@
-
 # About
 
 This work is produced using entirely Free and Open Source Software in python.  
