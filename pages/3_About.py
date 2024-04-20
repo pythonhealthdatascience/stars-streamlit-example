@@ -1,3 +1,15 @@
+'''
+About page:
+
+Links to:
+* Github
+* Open science archive
+* Documentation
+* Researchers via ORCIDs
+* Sim software
+( Anything else relevant)
+'''
+
 import streamlit as st
 import urllib.request as request
 
