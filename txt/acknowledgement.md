@@ -1,9 +1,19 @@
-
 # About
 
-This work is produced using entirely free and open software in python.  
+This work is produced using entirely Free and Open Source Software in python.  
 
 This model is independent research supported by the National Institute for Health Research Applied Research Collaboration South West Peninsula. The views expressed in this publication are those of the author(s) and not necessarily those of the National Institute for Health Research or the Department of Health and Social Care.
+
+## Author ORCIDs
+
+[![ORCID: Harper](https://img.shields.io/badge/ORCID-0000--0001--5274--5037-brightgreen)](https://orcid.org/0000-0001-5274-5037)
+[![ORCID: Monks](https://img.shields.io/badge/ORCID-0000--0003--2631--4481-brightgreen)](https://orcid.org/0000-0003-2631-4481)
+
+## Links
+
+> GitHub: https://github.com/pythonhealthdatascience/stars-streamlit-example 
+
+> Citable archive: https://zenodo.org/records/10935920
 
 > Detailed model documentation can be found here: https://pythonhealthdatascience.github.io/stars-simpy-example-docs 
 
