@@ -17,6 +17,8 @@ This model is independent research supported by the National Institute for Healt
 
 > Detailed model documentation can be found here: https://pythonhealthdatascience.github.io/stars-simpy-example-docs 
 
+> Simpy + Streamlit tutorial: https://health-data-science-or.github.io/simpy-streamlit-tutorial 
+
 ## Modelling and Simulation Software
 
 The model is written in `python3` and `simpy`.  The simulation libary `simpy` uses a **process based model worldview**.  Given its simplicity it is a highly flexible discrete-event simulation package.
@@ -40,6 +42,6 @@ The interactive web application was developed in `streamlit` and deployed freely
 
 A beginner tutorial is available to support using `simpy` and `streamlit`. 
 
-> Monks, Thomas, & Harper, Alison. (2023). SimPy and StreamLit Tutorial Materials for Healthcare Discrete-Event Simulation (v1.1.0). Zenodo. https://doi.org/10.5281/zenodo.8159080
+> Monks T and Harper A. Improving the usability of open health service delivery simulation models using Python and web apps [version 1; peer review: 1 approved, 2 approved with reservations]. NIHR Open Res 2023, 3:48 (https://doi.org/10.3310/nihropenres.13467.1)
 
 > Online interactive tutorial: https://health-data-science-or.github.io/simpy-streamlit-tutorial 
