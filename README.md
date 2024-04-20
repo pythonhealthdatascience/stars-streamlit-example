@@ -1,4 +1,4 @@
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10935920.svg)](https://doi.org/10.5281/zenodo.10935920)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11001959.svg)](https://doi.org/10.5281/zenodo.11001959)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/release/python-3100+/)
 [![Read the Docs](https://readthedocs.org/projects/pip/badge/?version=latest)](https://pythonhealthdatascience.github.io/stars-simpy-example-docs)
@@ -26,7 +26,7 @@ The materials and methods in this repository support work towards developing the
 
 ## Citation
 
-> Monks, T., & Harper, A. (2023). Towards Sharing Tools and Artifacts for Reusable Simulation: deploying a `simpy` model as a web app (v2.1.0). Zenodo. https://doi.org/10.5281/zenodo.10935920
+> Monks, T., & Harper, A. (2024). Towards Sharing Tools and Artifacts for Reusable Simulation: deploying a `simpy` model as a web app (v2.2.0). Zenodo. https://doi.org/10.5281/zenodo.11001959
 
 ```bibtex
 @software{monks_streamlit_example,
@@ -34,14 +34,14 @@ The materials and methods in this repository support work towards developing the
                   Harper, Alison},
   title        = {{Towards Sharing Tools and Artifacts for Reusable 
                    Simulation: deploying a `simpy` model as a web app}},
+  month        = apr,
   year         = 2024,
   publisher    = {Zenodo},
-  version      = {v2.1.0},
-  doi 	       = {10.5281/zenodo.10935920},
-  url	       = {https://doi.org/10.5281/zenodo.10935920}, 
+  version      = {v2.2.0},
+  doi          = {10.5281/zenodo.11001959},
+  url          = {https://doi.org/10.5281/zenodo.11001959}
 }
 ```
-
 ## Funding
 
 This code is part of independent research supported by the National Institute for Health Research Applied Research Collaboration South West Peninsula. The views expressed in this publication are those of the author(s) and not necessarily those of the National Institute for Health Research or the Department of Health and Social Care.
