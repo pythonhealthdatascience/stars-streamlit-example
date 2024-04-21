@@ -6,6 +6,9 @@ import numpy as np
 import model as md
 from PIL import Image
 
+# Modification -> upgrade from matplotlib
+import plotly.express as px
+
 from more_plot import more_plot
 
 INFO_1 = '''**A simple simulation model of a urgent care and treatment centre.**'''
@@ -39,22 +42,26 @@ def show_more_plot(results, column='09_throughput'):
     fig, ax = more_plot(results, column, suppress_warnings=True)
     st.pyplot(fig)
 
+################################################################################
+# MODIFICATION v3: code to create plotly histogram
 def get_arrival_chart():
     '''
-    Quick and load of arrival pattern as matplotlib ax
+    Create and return a plotly express bar chart of
+    arrivals
 
     Returns:
     --------
-    fig 
+    plotly figure.
     '''
     arrivals = pd.read_csv(md.NSPP_PATH)
-    # visualise
-    ax = arrivals.plot(y='arrival_rate', x='period', rot=45,
-                                    kind='bar',figsize=(12,5), legend=False)
-    ax.set_xlabel('hour of day')
-    ax.set_ylabel('mean arrivals')
-
-    return ax.figure
+    fig = px.bar(arrivals, x='period', y='arrival_rate',
+                 labels={
+                    "period": "hour of day",
+                    "arrival_rate": "mean arrivaks"
+                 })
+    
+    return fig
+################################################################################
 
 
 st.set_page_config(
@@ -129,7 +136,7 @@ with col1.expander('Treatment process', expanded=False):
     st.markdown(INFO_4)
 
 with col2.expander('Daily Arrival Pattern', expanded=False):
-    st.pyplot(get_arrival_chart(), clear_figure=True)
+    st.plotly_chart(get_arrival_chart(), use_container_width=True)
 
 st.markdown(INFO_1a)
 
