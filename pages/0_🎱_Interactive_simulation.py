@@ -125,10 +125,6 @@ with st.sidebar:
     nt_trauma_var = st.slider('Variance of treatment time', 0.0, 10.0, 
                              md.DEFAULT_NON_TRAUMA_TREAT_VAR, 0.5)
                             
-
-    st.markdown('## Model execution')
-    
-
 # put info in columns
 col1, col2 = st.columns(2)
 with col1.expander('Treatment process', expanded=False):
@@ -155,7 +151,9 @@ args.prob_trauma = trauma_p
 args.exam_mean = exam_mean
 args.exam_var = exam_var
 
+# MODFICATION - moved from the sidebar.
 replications = st.number_input("Multiple runs", value=10, placeholder="Enter no. replications to run...")
+
 if st.button('Simulate treatment centre'):
     # Get results
     with st.spinner('Simulating the treatment centre...'):
