@@ -2,12 +2,9 @@
 About page:
 
 Links to:
-* Github
-* Open science archive
-* Documentation
+* STARS (to add when created) and funders
 * Researchers via ORCIDs
 * Sim software
-* Simulation + Streamlit Tutorial
 ( Anything else relevant)
 '''
 

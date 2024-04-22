@@ -1,23 +1,22 @@
 # About
 
-This work is produced using entirely Free and Open Source Software in Python.  
+This work is part of the **S**haring **T**ools and **A**rtefacts for **R**eproducible **S**imulations (STARS) in Healthcare study.  
 
-This model is independent research supported by the National Institute for Health Research Applied Research Collaboration South West Peninsula. The views expressed in this publication are those of the author(s) and not necessarily those of the National Institute for Health Research or the Department of Health and Social Care.
+This study is funded [UK Research and Innovation (UKRI)](https://www.ukri.org/) Medical Research Council's (MRC) [*Better Methods, Better Research* programme](https://www.ukri.org/opportunity/better-methods-better-research/).
 
-## Author ORCIDs
+> 📝 **Note:** The model presented here is part of STARS version 1.0: independent research supported by the National Institute for Health Research Applied Research Collaboration South West Peninsula. The views expressed in this publication are those of the author(s) and not necessarily those of the National Institute for Health Research or the Department of Health and Social Care.
 
-[![ORCID: Harper](https://img.shields.io/badge/ORCID-0000--0001--5274--5037-brightgreen)](https://orcid.org/0000-0001-5274-5037)
-[![ORCID: Monks](https://img.shields.io/badge/ORCID-0000--0003--2631--4481-brightgreen)](https://orcid.org/0000-0003-2631-4481)
 
-## Links
+## STARS Team
 
-> GitHub: https://github.com/pythonhealthdatascience/stars-streamlit-example 
+| Member      | ORCID |
+| ----------- | ----------- |
+| Thomas Monks      | [![ORCID: Monks](https://img.shields.io/badge/ORCID-0000--0003--2631--4481-brightgreen)](https://orcid.org/0000-0003-2631-4481) |
+| Alison Harper      | [![ORCID: Harper](https://img.shields.io/badge/ORCID-0000--0001--5274--5037-brightgreen)](https://orcid.org/0000-0001-5274-5037)
+| Navonil Mustafee      | [![ORCID: Mustafee](https://img.shields.io/badge/ORCID-0000--0002--2204--8924-brightgreen)](https://orcid.org/0000-0002-2204-8924)
+| Andrew Mayne   | TBA |
+| Amy Heather      | [![ORCID: Heather](https://img.shields.io/badge/ORCID-0000--0002--6596--3479-brightgreen)](https://orcid.org/0000-0002-6596-3479)|
 
-> Citable archive: https://zenodo.org/records/10935920
-
-> Detailed model documentation can be found here: https://pythonhealthdatascience.github.io/stars-simpy-example-docs 
-
-> Simpy + Streamlit tutorial: https://health-data-science-or.github.io/simpy-streamlit-tutorial 
 
 ## Modelling and Simulation Software
 
@@ -37,11 +36,3 @@ One of the benefits of a package like `simpy` is that it is written in standard 
 The interactive web application was developed in `streamlit` and deployed freely, but with limited computational resources, on streamlit cloud.  
 
 > Details and documentation for both of these can be found here: https://docs.streamlit.io/ 
-
-## Tutorial material
-
-A beginner tutorial is available to support using `simpy` and `streamlit`. 
-
-> Monks T and Harper A. Improving the usability of open health service delivery simulation models using Python and web apps [version 1; peer review: 1 approved, 2 approved with reservations]. NIHR Open Res 2023, 3:48 (https://doi.org/10.3310/nihropenres.13467.1)
-
-> Online interactive tutorial: https://health-data-science-or.github.io/simpy-streamlit-tutorial 

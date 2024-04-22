@@ -6,7 +6,11 @@ import numpy as np
 import model as md
 from PIL import Image
 
-from more_plot import more_plot
+# Modification -> upgrade from matplotlib
+import plotly.express as px
+
+# Modifcation use of Plotly implementation of MORE plot
+from more_plot import more_plotly
 
 INFO_1 = '''**A simple simulation model of a urgent care and treatment centre.**'''
 INFO_1a = '''**Change the model parameters and rerun to see the effect on waiting times and 
@@ -39,27 +43,31 @@ def show_more_plot(results, column='09_throughput'):
     fig, ax = more_plot(results, column, suppress_warnings=True)
     st.pyplot(fig)
 
+################################################################################
+# MODIFICATION v3: code to create plotly histogram
 def get_arrival_chart():
     '''
-    Quick and load of arrival pattern as matplotlib ax
+    Create and return a plotly express bar chart of
+    arrivals
 
     Returns:
     --------
-    fig 
+    plotly figure.
     '''
     arrivals = pd.read_csv(md.NSPP_PATH)
-    # visualise
-    ax = arrivals.plot(y='arrival_rate', x='period', rot=45,
-                                    kind='bar',figsize=(12,5), legend=False)
-    ax.set_xlabel('hour of day')
-    ax.set_ylabel('mean arrivals')
-
-    return ax.figure
+    fig = px.bar(arrivals, x='period', y='arrival_rate',
+                 labels={
+                    "period": "hour of day",
+                    "arrival_rate": "mean arrivaks"
+                 })
+    
+    return fig
+################################################################################
 
 
 st.set_page_config(
      #page_title="Ex-stream-ly Cool App",
-     #page_icon="🧊",
+     page_icon="🧊",
      layout="wide",
      initial_sidebar_state="expanded",
      menu_items={
@@ -117,10 +125,6 @@ with st.sidebar:
     nt_trauma_var = st.slider('Variance of treatment time', 0.0, 10.0, 
                              md.DEFAULT_NON_TRAUMA_TREAT_VAR, 0.5)
                             
-
-    st.markdown('## Model execution')
-    replications = st.slider('Multiple runs', 1, 50, 10)
-
 # put info in columns
 col1, col2 = st.columns(2)
 with col1.expander('Treatment process', expanded=False):
@@ -129,7 +133,7 @@ with col1.expander('Treatment process', expanded=False):
     st.markdown(INFO_4)
 
 with col2.expander('Daily Arrival Pattern', expanded=False):
-    st.pyplot(get_arrival_chart(), clear_figure=True)
+    st.plotly_chart(get_arrival_chart(), use_container_width=True)
 
 st.markdown(INFO_1a)
 
@@ -147,6 +151,9 @@ args.prob_trauma = trauma_p
 args.exam_mean = exam_mean
 args.exam_var = exam_var
 
+# MODFICATION - moved from the sidebar.
+replications = st.number_input("Multiple runs", value=10, placeholder="Enter no. replications to run...")
+
 if st.button('Simulate treatment centre'):
     # Get results
     with st.spinner('Simulating the treatment centre...'):
@@ -161,8 +168,7 @@ if st.button('Simulate treatment centre'):
         st.table(summary_series)
 
     with col2.expander('MORE Plot', expanded=True):
-        more_fig, ax = more_plot(results, '09_throughput', x_label='Average Daily Throughput', 
-                                figsize=(15, 9), suppress_warnings=True)
-     
-        st.pyplot(more_fig, clear_figure=True)
+        more_fig = more_plotly(results['09_throughput'].to_numpy(), 
+                               x_label='Average Daily Throughput')     
+        st.plotly_chart(more_fig, use_container_width=True)                     
 
