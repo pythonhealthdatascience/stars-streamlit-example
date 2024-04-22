@@ -58,7 +58,7 @@ def get_arrival_chart():
     fig = px.bar(arrivals, x='period', y='arrival_rate',
                  labels={
                     "period": "hour of day",
-                    "arrival_rate": "mean arrivaks"
+                    "arrival_rate": "mean arrivals"
                  })
     
     return fig
