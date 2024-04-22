@@ -445,7 +445,7 @@ def more_plotly(data, x_label, percentiles=(0.05, 0.95), suppress_warnings=False
                       name="CI 5th Percentile")  # Orange
 
     
-    elif not surpress_warnings:
+    elif not suppress_warnings:
         warnings.warn(WARN)
 
     note = 'Shaded regions around vertical lines are 95% Confidence Intervals'
