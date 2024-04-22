@@ -1,10 +1,11 @@
 '''
-About page:
+Resources page
 
 Links to:
-* STARS (to add when created) and funders
-* Researchers via ORCIDs
-* Sim software
+* Github
+* Open science archive
+* Documentation
+* Simulation + Streamlit Tutorial
 ( Anything else relevant)
 '''
 
@@ -13,7 +14,7 @@ import urllib.request as request
 
 FILE = (
     "https://raw.githubusercontent.com/pythonhealthdatascience/"
-    + "stars-streamlit-example/main/txt/acknowledgement.md"
+    + "stars-streamlit-example/main/txt/resources.md"
 )
 
 
