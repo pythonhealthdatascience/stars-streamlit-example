@@ -9,7 +9,8 @@ from PIL import Image
 # Modification -> upgrade from matplotlib
 import plotly.express as px
 
-from more_plot import more_plot
+# Modifcation use of Plotly implementation of MORE plot
+from more_plot import more_plotly
 
 INFO_1 = '''**A simple simulation model of a urgent care and treatment centre.**'''
 INFO_1a = '''**Change the model parameters and rerun to see the effect on waiting times and 
@@ -126,7 +127,7 @@ with st.sidebar:
                             
 
     st.markdown('## Model execution')
-    replications = st.slider('Multiple runs', 1, 50, 10)
+    
 
 # put info in columns
 col1, col2 = st.columns(2)
@@ -154,6 +155,7 @@ args.prob_trauma = trauma_p
 args.exam_mean = exam_mean
 args.exam_var = exam_var
 
+replications = st.number_input("Multiple runs", value=10, placeholder="Enter no. replications to run...")
 if st.button('Simulate treatment centre'):
     # Get results
     with st.spinner('Simulating the treatment centre...'):
@@ -168,8 +170,7 @@ if st.button('Simulate treatment centre'):
         st.table(summary_series)
 
     with col2.expander('MORE Plot', expanded=True):
-        more_fig, ax = more_plot(results, '09_throughput', x_label='Average Daily Throughput', 
-                                figsize=(15, 9), suppress_warnings=True)
-     
-        st.pyplot(more_fig, clear_figure=True)
+        more_fig = more_plotly(results['09_throughput'].to_numpy(), 
+                               x_label='Average Daily Throughput')     
+        st.plotly_chart(more_fig, use_container_width=True)                     
 
