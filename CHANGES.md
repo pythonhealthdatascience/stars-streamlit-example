@@ -1,5 +1,12 @@
 # Change Log
 
+## v3.0.1
+
+2nd May 2024
+
+* PATCH: Trauma patient treatment fixed to use the correct distribution and parameters
+* PATCH: Tramna and non-trauma pathways updated to self internal instance of `Scenario` class as opposed to module level variable. 
+
 ## v3.0.0
 
 22nd April 2024
