@@ -1,4 +1,4 @@
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11034479.svg)](https://doi.org/10.5281/zenodo.11034479)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11102678.svg)](https://doi.org/10.5281/zenodo.11102678)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/release/python-3100+/)
 [![Read the Docs](https://readthedocs.org/projects/pip/badge/?version=latest)](https://pythonhealthdatascience.github.io/stars-simpy-example-docs)
@@ -26,20 +26,20 @@ The materials and methods in this repository support work towards developing the
 
 ## Citation
 
-> Monks, T., & Harper, A. (2024). Towards Sharing Tools and Artifacts for Reusable Simulation: deploying a `simpy` model as a web app (v3.0.0). Zenodo. https://doi.org/10.5281/zenodo.11034479
+> Monks, T., & Harper, A. (2024). Towards Sharing Tools and Artifacts for Reusable Simulation: deploying a `simpy` model as a web app (v3.0.1). Zenodo. https://doi.org/10.5281/zenodo.11102678
 
 ```bibtex
-@software{monks_streamlit_example,
+@software{stars_streamlit_example,
   author       = {Monks, Thomas and
                   Harper, Alison},
   title        = {{Towards Sharing Tools and Artifacts for Reusable 
                    Simulation: deploying a `simpy` model as a web app}},
-  month        = apr,
+  month        = may,
   year         = 2024,
   publisher    = {Zenodo},
-  version      = {v3.0.0},
-  doi          = {10.5281/zenodo.11034479},
-  url          = {https://doi.org/10.5281/zenodo.11034479}
+  version      = {v3.0.1},
+  doi          = {10.5281/zenodo.11102678},
+  url          = {https://doi.org/10.5281/zenodo.11102678}
 }
 ```
 ## Funding
@@ -104,7 +104,7 @@ conda env create -f binder/environment.yml
 To activate the environment issue the following command:
 
 ```bash
-conda activate stars_streamlit`
+conda activate stars_streamlit
 ```
 
 ### Running the interface to the model
