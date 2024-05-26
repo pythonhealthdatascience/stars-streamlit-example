@@ -26,7 +26,7 @@ discharged.'''
 INFO_4 = '''**Non-trauma arrivals**
 patients with minor illness and no trauma go through registration and 
 examination activities. A proportion of non-trauma patients require treatment
-in a cubicle before being dicharged. '''
+in a cubicle before being discharged. '''
 
 SC_TABLE = '''
 |   | Scenario                | Description                                                          |
@@ -128,7 +128,7 @@ with st.sidebar:
 # put info in columns
 col1, col2 = st.columns(2)
 with col1.expander('Treatment process', expanded=False):
-    st.image('img/process_flow_img.jpg')
+    st.image('img/process_flow_img.png')
     st.markdown(INFO_3)
     st.markdown(INFO_4)
 
