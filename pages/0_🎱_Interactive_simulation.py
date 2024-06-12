@@ -39,9 +39,6 @@ SC_TABLE = '''
 | 6 | Scenario 5 + short exam | Scenario 5 changes + examination takes 4 mins less on average        |
 
 '''
-def show_more_plot(results, column='09_throughput'):
-    fig, ax = more_plot(results, column, suppress_warnings=True)
-    st.pyplot(fig)
 
 ################################################################################
 # MODIFICATION v3: code to create plotly histogram
