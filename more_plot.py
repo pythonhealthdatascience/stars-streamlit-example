@@ -109,9 +109,9 @@ def more_plotly(
     # Probably will shift these to module level scope.
     LIKELY = "LIKELY"
     UNLIKELY = "UNLIKELY"
-    # FONT_SIZE = 12
-    # LINE_WIDTH = 3
-    # LINE_STYLE = "-"
+    FONT_SIZE = 10
+    LINE_WIDTH = 2
+    LINE_STYLE = "dot"
     CRIT_VALUE = 1.96
     UPPER_QUANTILE = percentiles[1]
     LOWER_QUANTILE = percentiles[0]
@@ -159,12 +159,13 @@ def more_plotly(
         yaxis_title="Replications")
 
     # Add the vertical dotted lines
-    fig.add_vline(x=mean, line_width=2, line_dash="dot", line_color="black",
-                  annotation_text="mean")
-    fig.add_vline(x=p5, line_width=2, line_dash="dot", line_color="black",
-                  annotation_text="5th", annotation_position="top left")
-    fig.add_vline(x=p95, line_width=2, line_dash="dot", line_color="black",
-                  annotation_text="95th")
+    fig.add_vline(x=mean, line_width=LINE_WIDTH, line_dash=LINE_STYLE,
+                  line_color="black", annotation_text="mean")
+    fig.add_vline(x=p5, line_width=LINE_WIDTH, line_dash=LINE_STYLE,
+                  line_color="black", annotation_text="5th",
+                  annotation_position="top left")
+    fig.add_vline(x=p95, line_width=LINE_WIDTH, line_dash=LINE_STYLE,
+                  line_color="black", annotation_text="95th")
 
     # Add CI for mean
     fig.add_vrect(x0=lower_limit, x1=upper_limit, line_width=0,
@@ -200,7 +201,7 @@ def more_plotly(
     fig.add_annotation(
         showarrow=False,
         text=note,
-        font=dict(size=10),
+        font=dict(size=FONT_SIZE),
         xref="x domain",
         x=0.0,
         yref="y domain",
