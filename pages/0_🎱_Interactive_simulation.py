@@ -12,6 +12,8 @@ import plotly.express as px
 # Modifcation use of Plotly implementation of MORE plot
 from more_plot import more_plotly
 
+from scripts.arrival_chart import get_arrival_chart
+
 INFO_1 = '''**A simple simulation model of a urgent care and treatment centre.**'''
 INFO_1a = '''**Change the model parameters and rerun to see the effect on waiting times and 
 utilisation of rooms**'''
@@ -39,28 +41,6 @@ SC_TABLE = '''
 | 6 | Scenario 5 + short exam | Scenario 5 changes + examination takes 4 mins less on average        |
 
 '''
-
-################################################################################
-# MODIFICATION v3: code to create plotly histogram
-def get_arrival_chart():
-    '''
-    Create and return a plotly express bar chart of
-    arrivals
-
-    Returns:
-    --------
-    plotly figure.
-    '''
-    arrivals = pd.read_csv(md.NSPP_PATH)
-    fig = px.bar(arrivals, x='period', y='arrival_rate',
-                 labels={
-                    "period": "hour of day",
-                    "arrival_rate": "mean arrivals"
-                 })
-    
-    return fig
-################################################################################
-
 
 st.set_page_config(
      #page_title="Ex-stream-ly Cool App",
