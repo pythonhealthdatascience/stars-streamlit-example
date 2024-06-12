@@ -1,13 +1,9 @@
-import urllib.request as request
+import io
 
 
 def read_file_contents(path):
     """
-    Download the content of a file from the GitHub Repo and return as a utf-8 string
-
-    Notes:
-    -------
-        adapted from 'https://github.com/streamlit/demo-self-driving'
+    Import local file and return as a UTF-8 string
 
     Parameters:
     ----------
@@ -19,5 +15,5 @@ def read_file_contents(path):
     utf-8 str
 
     """
-    response = request.urlopen(path)
-    return response.read().decode("utf-8")
+    file = io.open(path, mode="r", encoding="utf-8")
+    return file.read()
