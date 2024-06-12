@@ -9,7 +9,7 @@ from bokeh.models import CustomJS
 # return bokeh events from streamlit
 from streamlit_bokeh_events import streamlit_bokeh_events
 
-import model as md
+from treat_sim import model as md
 
 
 

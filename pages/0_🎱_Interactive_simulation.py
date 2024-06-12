@@ -3,8 +3,9 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
-import model as md
 from PIL import Image
+
+from treat_sim import model as md
 
 # Modification -> upgrade from matplotlib
 import plotly.express as px

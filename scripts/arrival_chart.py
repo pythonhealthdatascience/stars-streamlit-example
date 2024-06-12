@@ -1,6 +1,7 @@
-import model as md
 import plotly.express as px
 import pandas as pd
+
+from treat_sim import model as md
 
 
 def get_arrival_chart():
