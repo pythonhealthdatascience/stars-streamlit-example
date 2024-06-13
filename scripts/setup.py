@@ -6,8 +6,9 @@ def page_config():
     """
     Set page configuration throughout app
     """
-    # Import STARS logo
+    # Import STARS and NIHR logos
     logo = Image.open("img/stars_logo_blue.png")
+    nihr = Image.open("img/nihr_logo.png")
 
     # Set site configuration settings
     st.set_page_config(
@@ -19,3 +20,6 @@ def page_config():
             "About": "## Treatment centre sim.  Adapted from Nelson (2013)."
         }
     )
+
+    # Add logo add top of sidebar
+    st.logo(nihr)

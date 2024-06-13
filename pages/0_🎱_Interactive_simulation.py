@@ -1,5 +1,4 @@
 import streamlit as st
-from PIL import Image
 from treat_sim import model as md
 from more_plot import more_plotly
 from scripts.arrival_chart import get_arrival_chart
@@ -24,10 +23,6 @@ in a cubicle before being discharged."""
 
 # Title
 st.title("Treatment Centre Simulation Model")
-
-# NIHR logo
-image = Image.open("img/nihr.png")
-st.image(image)
 
 # Intro sentence
 st.markdown(INFO_1)
