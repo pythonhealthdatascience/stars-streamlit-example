@@ -1,56 +1,22 @@
 import streamlit as st
 from PIL import Image
-import urllib
-import urllib.request as request
+from scripts.read_file import read_file_contents
+from scripts.setup import page_config
 
-st.set_page_config(
-    # page_title="Ex-stream-ly Cool App",
-    # page_icon="🧊",
-    layout="wide",
-    initial_sidebar_state="expanded",
-    menu_items={
-        #    'Get Help': 'https://www.extremelycoolapp.com/help',
-        #    'Report a bug': "https://www.extremelycoolapp.com/bug",
-        "About": "## Treatment centre sim.  Adapted from Nelson (2013)."
-    },
-)
+# Set page config
+page_config()
 
-INFO_1 = """**A simple simulation model of a urgent care and treatment centre.**"""
+# Text to display
+INFO_1 = "**A simple simulation model of a urgent care and treatment centre.**"
+OVERVIEW_PATH = "txt/overview.md"
 
-OVERVIEW_PATH = (
-    "https://raw.githubusercontent.com/pythonhealthdatascience/"
-    + "stars-streamlit-example/main/txt/overview.md"
-)
-
-
-def read_file_contents(path):
-    """
-    Download the content of a file from the GitHub Repo and return as a utf-8 string
-
-    Notes:
-    -------
-        adapted from 'https://github.com/streamlit/demo-self-driving'
-
-    Parameters:
-    ----------
-    path: str
-        e.g. file_name.md
-
-    Returns:
-    --------
-    utf-8 str
-
-    """
-    response = request.urlopen(path)
-    return response.read().decode("utf-8")
-
-
+# Title
 st.title("Treatment Centre Simulation Model")
 
+# NIHR logo
 image = Image.open("img/nihr.png")
 st.image(image)
 
+# Display info and plain english summary
 st.markdown(INFO_1)
-
-# plain english summary
 st.markdown(read_file_contents(OVERVIEW_PATH))
