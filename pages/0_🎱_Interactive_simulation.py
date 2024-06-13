@@ -4,16 +4,14 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 from PIL import Image
-
 from treat_sim import model as md
-
-# Modification -> upgrade from matplotlib
 import plotly.express as px
-
-# Modifcation use of Plotly implementation of MORE plot
 from more_plot import more_plotly
-
 from scripts.arrival_chart import get_arrival_chart
+from scripts.setup import page_config
+
+# Set page config
+page_config()
 
 INFO_1 = '''**A simple simulation model of a urgent care and treatment centre.**'''
 INFO_1a = '''**Change the model parameters and rerun to see the effect on waiting times and 
@@ -42,18 +40,6 @@ SC_TABLE = '''
 | 6 | Scenario 5 + short exam | Scenario 5 changes + examination takes 4 mins less on average        |
 
 '''
-
-st.set_page_config(
-     #page_title="Ex-stream-ly Cool App",
-     page_icon="🧊",
-     layout="wide",
-     initial_sidebar_state="expanded",
-     menu_items={
-     #    'Get Help': 'https://www.extremelycoolapp.com/help',
-     #    'Report a bug': "https://www.extremelycoolapp.com/bug",
-         'About': "## Treatment centre sim.  Adapted from Nelson (2013)."
-     }
- )
 
 st.title('Treatment Centre Simulation Model')
 

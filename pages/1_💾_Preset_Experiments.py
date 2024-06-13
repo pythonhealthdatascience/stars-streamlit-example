@@ -2,6 +2,7 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
+
 # widgets and JS events from bokeh to execute copy to clipboard
 from bokeh.models.widgets import Button
 from bokeh.models import CustomJS
@@ -11,7 +12,10 @@ from streamlit_bokeh_events import streamlit_bokeh_events
 
 from treat_sim import model as md
 
+from scripts.setup import page_config
 
+# Set page config
+page_config()
 
 SC_TABLE = '''
 |   | Scenario                | Description                                                          |

@@ -11,6 +11,10 @@ from bokeh.models import CustomJS
 from streamlit_bokeh_events import streamlit_bokeh_events
 
 from treat_sim import model as md
+from scripts.setup import page_config
+
+# Set page config
+page_config()
 
 TITLE = 'Create custom experiments'
 INFO_3 = '### Upload custom scenarios and compare results.'
