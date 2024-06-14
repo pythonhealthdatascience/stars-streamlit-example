@@ -6,9 +6,14 @@ from bokeh.models import CustomJS
 from streamlit_bokeh_events import streamlit_bokeh_events
 
 
-def copy_results():
+def copy_results(result_table):
     """
     Create button that, when clicked, copies table to clipboard
+
+    Parameters:
+    -----------
+    result_table : pd.DataFrame
+        Dataframe containing results from the simulation
 
     Notes:
     ------
@@ -17,7 +22,7 @@ def copy_results():
     """
     copy_button = Button(label="Copy results to clipboard")
     copy_button.js_on_event("button_click", CustomJS(
-        args=dict(df=st.session_state['preset_results'].to_csv(sep="\t")),
+        args=dict(df=result_table.to_csv(sep="\t")),
         code="navigator.clipboard.writeText(df);"))
     no_event = streamlit_bokeh_events(
         copy_button,

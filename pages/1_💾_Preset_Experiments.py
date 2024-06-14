@@ -30,23 +30,23 @@ if st.button("Run all scenarios and compare"):
             rc_period=md.DEFAULT_RESULTS_COLLECTION_PERIOD,
             n_reps=5)
 
-        st.session_state['preset_results'] = (
+        st.session_state["preset_results"] = (
             md.scenario_summary_frame(results).round(1))
 
-if 'preset_results' in st.session_state:
+if "preset_results" in st.session_state:
     st.success("Done!")
 
     # Display results table
-    st.table(st.session_state['preset_results'])
+    st.table(st.session_state["preset_results"])
 
     # Download results (with dependence on session state meaning the table no
     # longer vanishes when this is clicked)
     st.download_button(
         "Download results as .csv",
-        st.session_state['preset_results'].to_csv().encode("utf-8"),
+        st.session_state["preset_results"].to_csv().encode("utf-8"),
         "experiment_results.csv",
         "text/csv",
         key="download-csv")
 
     # Button to copy table to clipboard
-    copy_results()
+    copy_results(st.session_state["preset_results"])
