@@ -1,17 +1,8 @@
 import streamlit as st
-import matplotlib.pyplot as plt
 import pandas as pd
-import numpy as np
-
-# widgets and JS events from bokeh to execute copy to clipboard
-from bokeh.models.widgets import Button
-from bokeh.models import CustomJS
-
-# return bokeh events from streamlit
-from streamlit_bokeh_events import streamlit_bokeh_events
-
 from treat_sim import model as md
 from scripts.setup import page_config
+from scripts.copy_table import copy_results
 
 # Set page config
 page_config()
@@ -68,10 +59,8 @@ def run_experiments(scenarios, n_reps):
 def results_as_summary_frame(results):
     return md.scenario_summary_frame(results).round(1)
 
-# def main():
 st.title(TITLE)
 st.markdown(INFO_3)
-
 
 uploaded_file = st.file_uploader("Choose a file")
 df_results = pd.DataFrame()
@@ -106,20 +95,5 @@ if uploaded_file is not None:
         key='download-csv'
         )
 
-        # copy paste workaround for STREAMLIT Bug
-        # code based on https://discuss.streamlit.io/t/copy-dataframe-to-clipboard/2633
-        copy_button = Button(label="Copy results to clipboard")
-        copy_button.js_on_event("button_click", CustomJS(args=dict(df=df_results.to_csv(sep='\t')), code="""
-            navigator.clipboard.writeText(df);
-            """))
-            
-        no_event = streamlit_bokeh_events(
-            copy_button,
-            events="GET_TEXT",
-            key="get_text",
-            refresh_on_update=True,
-            override_height=75,
-            debounce_time=0)
-
-# if __name__ == '__main__':
-#     main()
+        # Button to copy table to clipboard
+        copy_results()
