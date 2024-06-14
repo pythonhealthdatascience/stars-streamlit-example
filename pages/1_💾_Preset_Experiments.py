@@ -34,32 +34,33 @@ if st.button("Run all scenarios and compare"):
             rc_period=md.DEFAULT_RESULTS_COLLECTION_PERIOD,
             n_reps=5)
 
-        st.success("Done!")
-        df_results = md.scenario_summary_frame(results).round(1)
+        st.session_state['preset_results'] = md.scenario_summary_frame(results).round(1)
 
-        st.table(df_results)
-        print(df_results.to_csv().encode("utf-8"))
+if 'preset_results' in st.session_state:
+    st.success("Done!")
 
-        # this removes the table above from the app - how to avoid?
-        st.download_button(
-            "Download results as .csv",
-            df_results.to_csv().encode("utf-8"),
-            "experiment_results.csv",
-            "text/csv",
-            key="download-csv")
+    # Display results table
+    st.table(st.session_state['preset_results'])
 
-        # Copy table workaround for streamlit bug. Code based on
-        # https://discuss.streamlit.io/t/copy-dataframe-to-clipboard/2633
-        copy_button = Button(label="Copy results to clipboard")
-        copy_button.js_on_event(
-            "button_click",
-            CustomJS(args=dict(df=df_results.to_csv(sep="\t")),
-                     code="navigator.clipboard.writeText(df);"))
+    # Download results (with dependence on session state meaning the table no
+    # longer vanishes when this is clicked)
+    st.download_button(
+        "Download results as .csv",
+        st.session_state['preset_results'].to_csv().encode("utf-8"),
+        "experiment_results.csv",
+        "text/csv",
+        key="download-csv")
 
-        no_event = streamlit_bokeh_events(
-            copy_button,
-            events="GET_TEXT",
-            key="get_text",
-            refresh_on_update=True,
-            override_height=75,
-            debounce_time=0)
+    # Copy table workaround for streamlit bug. Code based on
+    # https://discuss.streamlit.io/t/copy-dataframe-to-clipboard/2633
+    copy_button = Button(label="Copy results to clipboard")
+    copy_button.js_on_event("button_click", CustomJS(
+        args=dict(df=st.session_state['preset_results'].to_csv(sep="\t")),
+        code="navigator.clipboard.writeText(df);"))
+    no_event = streamlit_bokeh_events(
+        copy_button,
+        events="GET_TEXT",
+        key="get_text",
+        refresh_on_update=True,
+        override_height=75,
+        debounce_time=0)
