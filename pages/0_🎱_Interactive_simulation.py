@@ -35,22 +35,23 @@ with st.sidebar:
     st.markdown("## Capacity constraints")
 
     triage_bays = st.slider(
-        "Triage bays", 1, 5, md.DEFAULT_N_TRIAGE, help="Number of triage bays")
+        "Triage bays", 1, 5, md.DEFAULT_N_TRIAGE,
+        help="Number of triage cubicles")
 
     exam_rooms = st.slider(
         "Exam rooms", 1, 5, md.DEFAULT_N_EXAM,
-        help="Number of exam rooms on the non-trauma pathway")
+        help="Number of examination rooms")
 
     treat_rooms = st.slider(
-        "Non-Trauma Treatment cubicles", 1, 5, md.DEFAULT_N_CUBICLES_1,
-        help="Number of treatment cubicles on the non-trauma pathway")
+        "Non-trauma treatment cubicles", 1, 5, md.DEFAULT_N_CUBICLES_1,
+        help="Number of non-trauma treatment cubicles")
 
     # Trauma pathway
     st.markdown("## Trauma Pathway")
 
     trauma_p = st.slider(
         "Probability trauma patient", 0.0, 1.0, md.DEFAULT_PROB_TRAUMA, 0.01,
-        help="Probability of patients being triaged as trauma")
+        help="Probability that a new arrival is a trauma patient")
 
     trauma_mean = st.slider(
         "Mean treatment time", 0.0, 100.0, md.DEFAULT_TRAUMA_TREAT_MEAN, 1.0,
@@ -74,7 +75,7 @@ with st.sidebar:
     nontrauma_treat = st.slider(
         "Probability non-trauma treatment", 0.0, 1.0,
         md.DEFAULT_NON_TRAUMA_TREAT_P,
-        help="Probability of non-trauma patients requiring treatment")
+        help="Probability that non-trauma patient requires treatment")
 
     nt_trauma_mean = st.slider(
         "Mean treatment time", 0.0, 100.0, md.DEFAULT_NON_TRAUMA_TREAT_MEAN,
@@ -102,11 +103,11 @@ args = md.Scenario()
 args.n_triage = triage_bays
 args.n_exam = exam_rooms
 args.n_cubicles_1 = treat_rooms
-args.treat_trauma_mean = trauma_mean
-args.treat_trauma_var = trauma_var
-args.nt_treat_prob = nontrauma_treat
-args.nt_treat_mean = nt_trauma_mean
-args.nt_treat_var = nt_trauma_var
+args.trauma_treat_mean = trauma_mean
+args.trauma_treat_var = trauma_var
+args.non_trauma_treat_p = nontrauma_treat
+args.non_trauma_treat_mean = nt_trauma_mean
+args.non_trauma_treat_var = nt_trauma_var
 args.prob_trauma = trauma_p
 args.exam_mean = exam_mean
 args.exam_var = exam_var
