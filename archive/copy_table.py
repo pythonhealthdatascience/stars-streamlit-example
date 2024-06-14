@@ -1,4 +1,3 @@
-import streamlit as st
 # Widgets and JS events from bokeh to execute copy to clipboard
 from bokeh.models.widgets import Button
 from bokeh.models import CustomJS
