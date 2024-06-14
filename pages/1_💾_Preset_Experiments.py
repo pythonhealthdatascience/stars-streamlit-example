@@ -2,7 +2,6 @@ import streamlit as st
 from treat_sim import model as md
 from scripts.setup import page_config
 from scripts.read_file import read_file_contents
-from scripts.copy_table import copy_results
 
 # Set page config
 page_config()
@@ -21,10 +20,8 @@ st.markdown("")
 if st.button("Run all scenarios and compare"):
 
     scenarios = md.get_scenarios()
-    print(scenarios)
 
     with st.spinner("Running scenario analysis"):
-        # will only compute once... due to cache
         results = md.run_scenario_analysis(
             scenarios=scenarios,
             rc_period=md.DEFAULT_RESULTS_COLLECTION_PERIOD,
@@ -34,19 +31,9 @@ if st.button("Run all scenarios and compare"):
             md.scenario_summary_frame(results).round(1))
 
 if "preset_results" in st.session_state:
+    # Success message
     st.success("Done!")
 
-    # Display results table
-    st.table(st.session_state["preset_results"])
-
-    # Download results (with dependence on session state meaning the table no
-    # longer vanishes when this is clicked)
-    st.download_button(
-        "Download results as .csv",
-        st.session_state["preset_results"].to_csv().encode("utf-8"),
-        "experiment_results.csv",
-        "text/csv",
-        key="download-csv")
-
-    # Button to copy table to clipboard
-    copy_results(st.session_state["preset_results"])
+    # Display results (which has inbuilt download button, and can easily
+    # select all and copy to clipboard)
+    st.dataframe(st.session_state["preset_results"])
