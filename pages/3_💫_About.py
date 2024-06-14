@@ -1,4 +1,4 @@
-'''
+"""
 About page:
 
 Links to:
@@ -6,7 +6,7 @@ Links to:
 * Researchers via ORCIDs
 * Sim software
 ( Anything else relevant)
-'''
+"""
 
 import streamlit as st
 from scripts.read_file import read_file_contents

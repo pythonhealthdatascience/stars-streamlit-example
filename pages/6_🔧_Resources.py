@@ -1,4 +1,4 @@
-'''
+"""
 Resources page
 
 Links to:
@@ -7,7 +7,7 @@ Links to:
 * Documentation
 * Simulation + Streamlit Tutorial
 ( Anything else relevant)
-'''
+"""
 
 import streamlit as st
 from scripts.read_file import read_file_contents
