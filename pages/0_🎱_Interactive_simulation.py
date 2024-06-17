@@ -1,6 +1,6 @@
 import streamlit as st
 from treat_sim import model as md
-from more_plot import more_plotly
+from scripts.more_plot import more_plotly
 from scripts.arrival_chart import get_arrival_chart
 from scripts.setup import page_config
 
