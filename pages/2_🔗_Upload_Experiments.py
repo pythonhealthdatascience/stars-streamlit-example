@@ -4,6 +4,7 @@ from treat_sim import model as md
 from scripts.setup import page_config
 from scripts.scenarios import create_scenarios
 from scripts.read_file import read_file_contents
+from scripts.label_results import label_results
 
 # Set page config
 page_config()
@@ -19,6 +20,7 @@ MODEL_URL = "https://github.com/pythonhealthdatascience/stars-treat-sim/" \
             "blob/main/treat_sim/model.py"
 TEMPLATE_PATH = "data/scenarios.csv"
 INTRO_TEXT = "txt/upload.md"
+RESULTS_PATH = "txt/results_table.md"
 
 # Display title and introduction
 st.title(TITLE)
@@ -75,4 +77,6 @@ if "upload_results" in st.session_state:
     # Display results as dataframe (which has inbuilt download button, and can
     # easily select all and copy to clipboard)
     st.markdown("## Results")
-    st.dataframe(st.session_state["upload_results"])
+    st.markdown(read_file_contents(RESULTS_PATH))
+    st.dataframe(label_results(st.session_state["upload_results"]),
+                 height=597, use_container_width=True)

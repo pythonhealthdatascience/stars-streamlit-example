@@ -2,11 +2,15 @@ import streamlit as st
 from treat_sim import model as md
 from scripts.more_plot import more_plotly
 from scripts.setup import page_config
+from scripts.label_results import label_results
+from scripts.read_file import read_file_contents
 
 # Set page config
 page_config()
 
 # Text to display on the page
+RESULTS_PATH = "txt/results_table.md"
+
 INFO_1 = """On this page, you can run the treatment centre simulation model
 introduced on the "Overview page"."""
 
@@ -29,15 +33,7 @@ You should:
 3. Re-run the model with different parameters and **look at the effect** on
 waiting times and utilisation of rooms."""
 
-INFO_4 = """This table shows the mean results from across each of the runs of
-your model. In the table:
-* Wait time is in minutes
-* Utilisation is the proportion of run time during which a given resource was
-in use
-* Throughput is the total number of patients that were successfully processed
-and discharged"""
-
-INFO_5 = """The MORE (**M**easure **O**f **R**isk and **E**rror) plot displays
+INFO_4 = """The MORE (**M**easure **O**f **R**isk and **E**rror) plot displays
 the distribution in the average daily throughput that was found in each run
 of the model.
 * Dotted lines indicate the **mean** throughoutput and the **5th and 95th
@@ -151,37 +147,12 @@ if st.button("Simulate treatment centre"):
     st.header("Results")
     # col1, col2 = st.columns(2)
     with st.expander("Tabular results", expanded=True):
-        st.markdown(INFO_4)
+        st.markdown(read_file_contents(RESULTS_PATH))
         # Get mean to 1 decimal place for each column in results
         summary_series = results.mean().round(1)
         summary_series.name = "Mean (across model runs)"
         # Convert to dataframe and relabel each of the results
-        summary_df = summary_series.rename_axis("Result").reset_index()
-        labels = {
-            "00_arrivals": "Total arrivals",
-            "01a_triage_wait": "Wait time for triage bay",
-            "01b_triage_util": "Utilisation of triage bay",
-            "02a_registration_wait": "Wait time for registration clerk",
-            "02b_registration_util": "Utilisation of registration clerk",
-            "03a_examination_wait": "Wait time for exam room (non-trauma)",
-            "03b_examination_util": "Utilisation of exam room (non-trauma)",
-            "04a_treatment_wait(non_trauma)": (
-                "Wait time for treatment cubicle (non-trauma)"),
-            "04b_treatment_util(non_trauma)": (
-                "Utilisation of treatment cubicle (non-trauma)"),
-            "05_total_time(non-trauma)": (
-                "Total time patients spent at centre (non-trauma)"),
-            "06a_trauma_wait": "Wait time for room for stabilisation (trauma)",
-            "06b_trauma_util": (
-                "Utilisation of room for stabilisation (trauma)"),
-            "07a_treatment_wait(trauma)": (
-                "Wait time for treatment cubicle (trauma)"),
-            "07b_treatment_util(trauma)": (
-                "Utilisation of treatment cubicle (trauma)"),
-            "08_total_time(trauma)": (
-                "Total time patients spent at centre (trauma)"),
-            "09_throughput": "Model throughput"}
-        summary_df["Result"] = summary_df["Result"].map(labels)
+        summary_df = label_results(summary_series)
         # Display results
         st.dataframe(
             summary_df, height=597, use_container_width=True)
@@ -189,7 +160,7 @@ if st.button("Simulate treatment centre"):
     # Display MORE plot
     with st.expander("MORE Plot", expanded=True):
         # Advice for interpretation of MORE plot
-        st.markdown(INFO_5)
+        st.markdown(INFO_4)
         # Create plot
         more_fig = more_plotly(results["09_throughput"].to_numpy(),
                                x_label="Average Daily Throughput")
