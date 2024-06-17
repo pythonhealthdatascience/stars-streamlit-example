@@ -29,6 +29,14 @@ You should:
 3. Re-run the model with different parameters and **look at the effect** on
 waiting times and utilisation of rooms."""
 
+INFO_4 = """This table shows the mean results from across all of the model
+runs. In the table:
+* Wait time is in minutes
+* Utilisation is the proportion of run time during which a given resource was
+in use
+* Throughput is the total number of patients that were successfully processed
+and discharged"""
+
 # Create widgets to adjust model parameters within the sidebar
 with st.sidebar:
     st.markdown("# Parameters")
@@ -128,14 +136,46 @@ if st.button("Simulate treatment centre"):
     st.success("Done!")
 
     # Display table of results
-    col1, col2 = st.columns(2)
-    with col1.expander("Tabular results", expanded=True):
+    st.header("Results")
+    # col1, col2 = st.columns(2)
+    with st.expander("Tabular results", expanded=True):
+        st.markdown(INFO_4)
+        # Get mean to 1 decimal place for each column in results
         summary_series = results.mean().round(1)
-        summary_series.name = "Mean"
-        st.table(summary_series)
+        summary_series.name = "Mean (across model runs)"
+        # Convert to dataframe and relabel each of the results
+        summary_df = summary_series.rename_axis("Result").reset_index()
+        labels = {
+            "00_arrivals": "Total arrivals",
+            "01a_triage_wait": "Wait time for triage bay",
+            "01b_triage_util": "Utilisation of triage bay",
+            "02a_registration_wait": "Wait time for registration clerk",
+            "02b_registration_util": "Utilisation of registration clerk",
+            "03a_examination_wait": "Wait time for exam room (non-trauma)",
+            "03b_examination_util": "Utilisation of exam room (non-trauma)",
+            "04a_treatment_wait(non_trauma)": (
+                "Wait time for treatment cubicle (non-trauma)"),
+            "04b_treatment_util(non_trauma)": (
+                "Utilisation of treatment cubicle (non-trauma)"),
+            "05_total_time(non-trauma)": (
+                "Total time patients spent at centre (non-trauma)"),
+            "06a_trauma_wait": "Wait time for room for stabilisation (trauma)",
+            "06b_trauma_util": (
+                "Utilisation of room for stabilisation (trauma)"),
+            "07a_treatment_wait(trauma)": (
+                "Wait time for treatment cubicle (trauma)"),
+            "07b_treatment_util(trauma)": (
+                "Utilisation of treatment cubicle (trauma)"),
+            "08_total_time(trauma)": (
+                "Total time patients spent at centre (trauma)"),
+            "09_throughput": "Model throughput"}
+        summary_df["Result"] = summary_df["Result"].map(labels).fillna(summary_df['Result'])
+        # Display results
+        st.dataframe(
+            summary_df, height=597, use_container_width=True)
 
     # Display MORE plot
-    with col2.expander("MORE Plot", expanded=True):
+    with st.expander("MORE Plot", expanded=True):
         more_fig = more_plotly(results["09_throughput"].to_numpy(),
                                x_label="Average Daily Throughput")
         st.plotly_chart(more_fig, use_container_width=True)
