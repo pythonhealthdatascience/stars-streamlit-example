@@ -12,21 +12,6 @@ import warnings
 import plotly.express as px
 
 
-def ci_for_sample_mean(mean_value, std, n, critical_value=1.96):
-    """Confidence interval for mean.  Assume std is sample std.
-
-    Notes:
-    ------
-
-    critical value hard coded at the moment.
-    Should update to use t dist.
-    """
-    half_width = (critical_value * (std / np.sqrt(n)))
-    mean_lower = mean_value - half_width
-    mean_upper = mean_value + half_width
-    return mean_lower, mean_upper
-
-
 def ci_percentile(results, field, percentile, critical_value=1.96):
     """Approximate confidence interval for percentile.
 
