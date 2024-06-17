@@ -29,13 +29,25 @@ You should:
 3. Re-run the model with different parameters and **look at the effect** on
 waiting times and utilisation of rooms."""
 
-INFO_4 = """This table shows the mean results from across all of the model
-runs. In the table:
+INFO_4 = """This table shows the mean results from across each of the runs of
+your model. In the table:
 * Wait time is in minutes
 * Utilisation is the proportion of run time during which a given resource was
 in use
 * Throughput is the total number of patients that were successfully processed
 and discharged"""
+
+INFO_5 = """The MORE (**M**easure **O**f **R**isk and **E**rror) plot displays
+the distribution in the average daily throughput that was found in each run
+of the model.
+* Dotted lines indicate the **mean** throughoutput and the **5th and 95th
+percentile**
+* The shaded yellow box shows the **95% confidence interval** of the mean
+* The bars indicate the **frequency** of that level of throughput that occurred
+between the runs. These are coloured:
+    * Green if they fall within the 5th and 95th percentile (indicating
+    "**likely**" results)
+    * Red if they fall outside these (indicating "**unlikely**" results)"""
 
 # Create widgets to adjust model parameters within the sidebar
 with st.sidebar:
@@ -98,18 +110,6 @@ with st.sidebar:
         md.DEFAULT_NON_TRAUMA_TREAT_VAR, 0.5,
         help="Variance in length of non-trauma treatment (min)")
 
-# Title
-st.title("Interactive simulation")
-
-# Intro section with treatment process
-st.markdown(INFO_1)
-with st.expander("Model recap", expanded=True):
-    st.markdown(INFO_2)
-    st.image("img/treat_sim_flow_diagram_labels.png")
-
-# Suggestion to vary parameters
-st.markdown(INFO_3)
-
 # Set up scenario
 args = md.Scenario()
 args.n_triage = triage_bays
@@ -124,9 +124,21 @@ args.prob_trauma = trauma_p
 args.exam_mean = exam_mean
 args.exam_var = exam_var
 
+# Title
+st.title("Interactive simulation")
+
+# Intro section with treatment process
+st.markdown(INFO_1)
+with st.expander("Model recap", expanded=True):
+    st.markdown(INFO_2)
+    st.image("img/treat_sim_flow_diagram_labels.png")
+
+# Suggestion to vary parameters
+st.markdown(INFO_3)
+
 # Set the number of replications
 replications = st.number_input(
-    "Multiple runs", value=10, placeholder="Enter no. replications to run...",
+    "Multiple runs", value=30, placeholder="Enter no. replications to run...",
     help="Number of replications to run")
 
 if st.button("Simulate treatment centre"):
@@ -169,13 +181,16 @@ if st.button("Simulate treatment centre"):
             "08_total_time(trauma)": (
                 "Total time patients spent at centre (trauma)"),
             "09_throughput": "Model throughput"}
-        summary_df["Result"] = summary_df["Result"].map(labels).fillna(summary_df['Result'])
+        summary_df["Result"] = summary_df["Result"].map(labels)
         # Display results
         st.dataframe(
             summary_df, height=597, use_container_width=True)
 
     # Display MORE plot
     with st.expander("MORE Plot", expanded=True):
+        # Advice for interpretation of MORE plot
+        st.markdown(INFO_5)
+        # Create plot
         more_fig = more_plotly(results["09_throughput"].to_numpy(),
                                x_label="Average Daily Throughput")
         st.plotly_chart(more_fig, use_container_width=True)
