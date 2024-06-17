@@ -1,31 +1,33 @@
 import streamlit as st
 from treat_sim import model as md
 from scripts.more_plot import more_plotly
-from scripts.arrival_chart import get_arrival_chart
 from scripts.setup import page_config
 
 # Set page config
 page_config()
 
-INFO_1 = "**A simple simulation model of a urgent care and treatment centre.**"
-INFO_2 = """**Change the model parameters and rerun to see the effect on
-waiting times and utilisation of rooms**"""
+# Text to display on the page
+INFO_1 = """On this page, you can run the treatment centre simulation model
+introduced on the "Overview page"."""
 
-INFO_3 = """**Trauma arrivals:**
-patients with severe illness and trauma that must first be stablised in a
-trauma room. These patients then undergo treatment in a cubicle before being
-discharged."""
+INFO_2 = """ This is a model of a clinic for:
+* **Trauma arrivals** - patients with severe illness and trauma. They are
+first stabilised in a trauma room, then undergo treatment in a cubicle before
+being discharged.
+* **Non-trauma arrivals** - patients with minor illness and no trauma. They
+go through registration and examination activities. A proportion of non-trauma
+patients require treatment in a cubicle before being discharged.
 
-INFO_4 = """**Non-trauma arrivals**
-patients with minor illness and no trauma go through registration and
-examination activities. A proportion of non-trauma patients require treatment
-in a cubicle before being discharged."""
+The treatment process is summarised in the diagram below, with the
+parameters you can change on this page highlighted with yellow circles 🟡."""
 
-# Title
-st.title("Treatment Centre Simulation Model")
+INFO_3 = """## Run the simulation
 
-# Intro sentence
-st.markdown(INFO_1)
+You should:
+1. Use the **sidebar** to change the model parameters.
+2. Click the **button** below to run the model.
+3. Re-run the model with different parameters and **look at the effect** on
+waiting times and utilisation of rooms."""
 
 # Create widgets to adjust model parameters within the sidebar
 with st.sidebar:
@@ -35,68 +37,70 @@ with st.sidebar:
     st.markdown("## Capacity constraints")
 
     triage_bays = st.slider(
-        "Triage bays", 1, 5, md.DEFAULT_N_TRIAGE,
+        "Triage bays (A)", 1, 5, md.DEFAULT_N_TRIAGE,
         help="Number of triage cubicles")
 
     exam_rooms = st.slider(
-        "Exam rooms", 1, 5, md.DEFAULT_N_EXAM,
+        "Exam rooms (B)", 1, 5, md.DEFAULT_N_EXAM,
         help="Number of examination rooms")
 
     treat_rooms = st.slider(
-        "Non-trauma treatment cubicles", 1, 5, md.DEFAULT_N_CUBICLES_1,
+        "Non-trauma treatment cubicles (C)", 1, 5, md.DEFAULT_N_CUBICLES_1,
         help="Number of non-trauma treatment cubicles")
 
     # Trauma pathway
     st.markdown("## Trauma Pathway")
 
     trauma_p = st.slider(
-        "Probability trauma patient", 0.0, 1.0, md.DEFAULT_PROB_TRAUMA, 0.01,
-        help="Probability that a new arrival is a trauma patient")
+        "Probability trauma patient (D)", 0.0, 1.0, md.DEFAULT_PROB_TRAUMA,
+        0.01, help="Probability that a new arrival is a trauma patient")
 
     trauma_mean = st.slider(
-        "Mean treatment time", 0.0, 100.0, md.DEFAULT_TRAUMA_TREAT_MEAN, 1.0,
-        help="Mean treatment time on trauma pathway (min)")
+        "Mean treatment time (E)", 0.0, 100.0, md.DEFAULT_TRAUMA_TREAT_MEAN,
+        1.0, help="Mean treatment time on trauma pathway (min)")
 
     trauma_var = st.slider(
-        "Variance of treatment time", 0.0, 10.0, md.DEFAULT_TRAUMA_TREAT_VAR,
-        0.5, help="Variance in treatment times on trauma pathway (min)")
+        "Variance of treatment time (E)", 0.0, 10.0,
+        md.DEFAULT_TRAUMA_TREAT_VAR, 0.5,
+        help="Variance in treatment times on trauma pathway (min)")
 
     # Non-trauma pathway
     st.markdown("## Non-Trauma Pathway")
 
     exam_mean = st.slider(
-        "Mean examination time", 0.0, 45.0, md.DEFAULT_EXAM_MEAN, 1.0,
+        "Mean examination time (F)", 0.0, 45.0, md.DEFAULT_EXAM_MEAN, 1.0,
         help="Mean length of examination (min)")
 
     exam_var = st.slider(
-        "Variance of examination time", 0.0, 15.0, md.DEFAULT_EXAM_VAR, 0.5,
-        help="Variance in length of examination (min)")
+        "Variance of examination time (F)", 0.0, 15.0, md.DEFAULT_EXAM_VAR,
+        0.5, help="Variance in length of examination (min)")
 
     nontrauma_treat = st.slider(
-        "Probability non-trauma treatment", 0.0, 1.0,
+        "Probability non-trauma treatment (G)", 0.0, 1.0,
         md.DEFAULT_NON_TRAUMA_TREAT_P,
         help="Probability that non-trauma patient requires treatment")
 
     nt_trauma_mean = st.slider(
-        "Mean treatment time", 0.0, 100.0, md.DEFAULT_NON_TRAUMA_TREAT_MEAN,
-        1.0, help="Mean length of non-trauma treatment (min)")
+        "Mean treatment time (H)", 0.0, 100.0,
+        md.DEFAULT_NON_TRAUMA_TREAT_MEAN, 1.0,
+        help="Mean length of non-trauma treatment (min)")
 
     nt_trauma_var = st.slider(
-        "Variance of treatment time", 0.0, 10.0,
+        "Variance of treatment time (H)", 0.0, 10.0,
         md.DEFAULT_NON_TRAUMA_TREAT_VAR, 0.5,
         help="Variance in length of non-trauma treatment (min)")
 
-# Describe treatment process and daily arrival patterns in columns
-col1, col2 = st.columns(2)
-with col1.expander("Treatment process", expanded=False):
-    st.image("img/process_flow_img.png")
-    st.markdown(INFO_3)
-    st.markdown(INFO_4)
-with col2.expander("Daily Arrival Pattern", expanded=False):
-    st.plotly_chart(get_arrival_chart(), use_container_width=True)
+# Title
+st.title("Interactive simulation")
+
+# Intro section with treatment process
+st.markdown(INFO_1)
+with st.expander("Model recap", expanded=True):
+    st.markdown(INFO_2)
+    st.image("img/treat_sim_flow_diagram_labels.png")
 
 # Suggestion to vary parameters
-st.markdown(INFO_2)
+st.markdown(INFO_3)
 
 # Set up scenario
 args = md.Scenario()
