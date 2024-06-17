@@ -33,6 +33,6 @@ One of the benefits of a package like `simpy` is that it is written in standard 
 
 ## Web App
 
-The interactive web application was developed in `streamlit` and deployed freely, but with limited computational resources, on streamlit cloud.  
+The interactive web application was developed in `streamlit` and deployed freely, but with limited computational resources, on Streamlit Community Cloud.  
 
 > Details and documentation for both of these can be found here: https://docs.streamlit.io/ 

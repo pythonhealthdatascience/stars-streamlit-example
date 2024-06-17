@@ -23,7 +23,6 @@ before being discharged.
 registration and examination activities. A proportion of non-trauma patients
 require treatment in a cubicle before being discharged."""
 
-
 # Title
 st.title("Treatment Centre Simulation Model")
 
@@ -42,8 +41,7 @@ with st.expander("View arrival pattern", expanded=False):
 # Display info on model applications and how it is set up, including
 # the treatment process diagram
 st.markdown(overview_2)
-with st.expander("View treatment process",
-                 expanded=False):
+with st.expander("View treatment process", expanded=False):
     st.image(PROCESS_IMG)
     st.markdown(INFO_2)
 
