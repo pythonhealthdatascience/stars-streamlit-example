@@ -1,5 +1,40 @@
 # Change Log
 
+## Unreleased
+
+Modifications to help improve user experience and clarity of the application and repository.
+
+### Added
+
+* Created `scripts/` folder and moved functions to that folder (to organise repository and prevent duplication of functions between pages)
+* Add `config.toml` to ensure consistent theme for users with multiple apps or global config settings
+* Add `treat_sim` to environment to import model (rather than using local model file)
+* Created function to set page configuration on every page of app, including NIHR logo in sidebar
+* Add Zenodo badges for each version in `CHANGES.md`
+* Add Andy Mayne's ORCID and STARS logo to About page
+* Add Towards paper to citation page and add Amy to `CITATION.cff`
+* Add more description to interactive simulation (help statements for each parameter, labelled process flow diagram, and step-by-step instructions)
+* Add instructions for using the Upload experiments page (including display of template `scenarios.csv`)
+
+### Changed
+
+* Made files PEP-8 compliant and consistent use of " / '
+* Upgraded environment to `streamlit`==1.35.0 (to use new features like `st.logo()`)
+* `read_file_contents()` uses local import (to prevent accidentally importing from deprecated development branches)
+* Used headings, bullets, bold text and images to Overview page to help break up paragraph of text. This includes the arrival figure which was moved from the Interactive Simulation page, as it is not used when choosing model parameters but is relevant to the overview description of the model
+
+### Removed
+
+* Removed `model.py`
+* Removed duplicate or unused functions from `more_plot.py`
+* Moved several unused files to `archive/`: `copy_table.py`, `gcp.yml`, `git_update.sh`, `more_plot.ipynb`, and `more_plot.png`
+* Deleted `CHANGES.md.backup`
+
+### Fixed
+
+* Saved preset experiment and uploaded experiments to session state so they are not lost between page changes
+* Fixed bugs with download button (where table for preset experiments disappears if click button) and copy button (which required workaround for streamlit bug) by displaying results using `st.dataframe()` which has built-in download button and is easy to copy to clipboard using `Ctrl+A`
+
 ## v3.1.0
 
 26th May 2024
