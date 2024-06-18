@@ -1,6 +1,11 @@
-# About
+start_1
 
-This work is part of the **S**haring **T**ools and **A**rtefacts for **R**eproducible **S**imulations (STARS) in Healthcare study.  
+## About
+
+This work is part of the **S**haring **T**ools and **A**rtefacts for **R**eproducible **S**imulations (STARS) in Healthcare study.
+
+end_1
+start_2
 
 This study is funded [UK Research and Innovation (UKRI)](https://www.ukri.org/) Medical Research Council's (MRC) [*Better Methods, Better Research* programme](https://www.ukri.org/opportunity/better-methods-better-research/).
 
@@ -31,8 +36,11 @@ One of the benefits of a package like `simpy` is that it is written in standard 
 
 > Detailed documentation for `simpy` and additional models can be found here: https://simpy.readthedocs.io/en/latest/
 
+
 ## Web App
 
 The interactive web application was developed in `streamlit` and deployed freely, but with limited computational resources, on Streamlit Community Cloud.  
 
 > Details and documentation for both of these can be found here: https://docs.streamlit.io/ 
+
+end_2
