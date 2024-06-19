@@ -7,9 +7,9 @@ This work is part of the **S**haring **T**ools and **A**rtefacts for **R**eprodu
 end_1
 start_2
 
-This study is funded [UK Research and Innovation (UKRI)](https://www.ukri.org/) Medical Research Council's (MRC) [*Better Methods, Better Research* programme](https://www.ukri.org/opportunity/better-methods-better-research/).
+This study is funded [UK Research and Innovation (UKRI)](https://www.ukri.org/) Medical Research Council's (MRC) [*Better Methods, Better Research* programme](https://www.ukri.org/opportunity/better-methods-better-research/) [grant number MR/Z503915/1].
 
-> 📝 **Note:** The model presented here is part of STARS version 1.0: independent research supported by the National Institute for Health Research Applied Research Collaboration South West Peninsula. The views expressed in this publication are those of the author(s) and not necessarily those of the National Institute for Health Research or the Department of Health and Social Care.
+> 📝 **Note:** This model is part of the ongoing STARS 2.0 study. An early version of the model presented here was part of STARS version 1.0: independent research supported by the National Institute for Health Research Applied Research Collaboration South West Peninsula. The views expressed in this publication are those of the author(s) and not necessarily those of the National Institute for Health Research or the Department of Health and Social Care.
 
 
 ## STARS Team
