@@ -130,3 +130,6 @@ dmypy.json
 
 # Backup of changelog
 CHANGES.md.backup
+
+# VSCode settings
+.vscode/
