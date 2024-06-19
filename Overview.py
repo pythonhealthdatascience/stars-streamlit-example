@@ -42,7 +42,7 @@ with st.expander("View arrival pattern", expanded=False):
 # the treatment process diagram
 st.markdown(overview_2)
 with st.expander("View treatment process", expanded=False):
-    st.image(PROCESS_IMG)
+    st.image(PROCESS_IMG, width=800)
     st.markdown(INFO_2)
 
 # Display info on using model to explore different scenarios

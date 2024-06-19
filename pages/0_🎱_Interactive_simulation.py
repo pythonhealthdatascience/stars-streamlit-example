@@ -8,6 +8,9 @@ from scripts.read_file import read_file_contents
 # Set page config
 page_config()
 
+# Image paths
+PROCESS_IMG = "img/treat_sim_flow_diagram_labels.png"
+
 # Text to display on the page
 RESULTS_PATH = "txt/results_table.md"
 
@@ -125,9 +128,9 @@ st.title("Interactive simulation")
 
 # Intro section with treatment process
 st.markdown(INFO_1)
-with st.expander("Model recap", expanded=True):
+with st.expander("Model recap", expanded=False):
     st.markdown(INFO_2)
-    st.image("img/treat_sim_flow_diagram_labels.png")
+    st.image(PROCESS_IMG, width=800)
 
 # Suggestion to vary parameters
 st.markdown(INFO_3)
