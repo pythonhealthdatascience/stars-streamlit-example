@@ -6,9 +6,11 @@
 
 # 💫 Towards Sharing Tools and Artifacts for Reusable Simulation: deploying a `simpy` model as a web app
 
+> The materials in this rep are part of the ongoing STARS 2.0 study. An early version of the materials were part of STARS 1.0. The code and written materials here demonstrate the application of STARS 1.0 to sharing a simpy discrete-event simulation model and associated research artifacts.
+
 ## Overview
 
-The materials and methods in this repository support work towards developing the S.T.A.R.S healthcare framework (**S**haring **T**ools and **A**rtifacts for **R**eusable **S**imulations in healthcare).  The code and written materials here demonstrate the application of S.T.A.R.S' version 1 to sharing a `simpy` discrete-event simuilation model and associated research artifacts.  
+The materials and methods in this repository support work towards developing the STARS healthcare framework (**S**haring **T**ools and **A**rtifacts for **R**eusable **S**imulations in healthcare).  The code and written materials here demonstrate the application of S.T.A.R.S' version 1 to sharing a `simpy` discrete-event simuilation model and associated research artifacts.  
 
 * All artifacts in this repository are linked to study researchers via ORCIDs;
 * Model code is made available under the MIT license;
