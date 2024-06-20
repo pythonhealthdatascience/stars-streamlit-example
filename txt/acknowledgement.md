@@ -1,21 +1,26 @@
-# About
+start_1
 
-This work is part of the **S**haring **T**ools and **A**rtefacts for **R**eproducible **S**imulations (STARS) in Healthcare study.  
+## About
 
-This study is funded [UK Research and Innovation (UKRI)](https://www.ukri.org/) Medical Research Council's (MRC) [*Better Methods, Better Research* programme](https://www.ukri.org/opportunity/better-methods-better-research/).
+This work is part of the **S**haring **T**ools and **A**rtefacts for **R**eproducible **S**imulations (STARS) in Healthcare study.
 
-> 📝 **Note:** The model presented here is part of STARS version 1.0: independent research supported by the National Institute for Health Research Applied Research Collaboration South West Peninsula. The views expressed in this publication are those of the author(s) and not necessarily those of the National Institute for Health Research or the Department of Health and Social Care.
+end_1
+start_2
+
+This study is funded [UK Research and Innovation (UKRI)](https://www.ukri.org/) Medical Research Council's (MRC) [*Better Methods, Better Research* programme](https://www.ukri.org/opportunity/better-methods-better-research/) [grant number MR/Z503915/1].
+
+> 📝 **Note:** This model is part of the ongoing STARS 2.0 study. An early version of the model presented here was part of STARS version 1.0: independent research supported by the National Institute for Health Research Applied Research Collaboration South West Peninsula. The views expressed in this publication are those of the author(s) and not necessarily those of the National Institute for Health Research or the Department of Health and Social Care.
 
 
 ## STARS Team
 
 | Member      | ORCID |
 | ----------- | ----------- |
-| Thomas Monks      | [![ORCID: Monks](https://img.shields.io/badge/ORCID-0000--0003--2631--4481-brightgreen)](https://orcid.org/0000-0003-2631-4481) |
-| Alison Harper      | [![ORCID: Harper](https://img.shields.io/badge/ORCID-0000--0001--5274--5037-brightgreen)](https://orcid.org/0000-0001-5274-5037)
-| Navonil Mustafee      | [![ORCID: Mustafee](https://img.shields.io/badge/ORCID-0000--0002--2204--8924-brightgreen)](https://orcid.org/0000-0002-2204-8924)
-| Andrew Mayne   | TBA |
-| Amy Heather      | [![ORCID: Heather](https://img.shields.io/badge/ORCID-0000--0002--6596--3479-brightgreen)](https://orcid.org/0000-0002-6596-3479)|
+| Thomas Monks | [![ORCID: Monks](https://img.shields.io/badge/ORCID-0000--0003--2631--4481-brightgreen)](https://orcid.org/0000-0003-2631-4481) |
+| Alison Harper | [![ORCID: Harper](https://img.shields.io/badge/ORCID-0000--0001--5274--5037-brightgreen)](https://orcid.org/0000-0001-5274-5037) |
+| Navonil Mustafee | [![ORCID: Mustafee](https://img.shields.io/badge/ORCID-0000--0002--2204--8924-brightgreen)](https://orcid.org/0000-0002-2204-8924) |
+| Andrew Mayne | [![ORCID: Mayne](https://img.shields.io/badge/ORCID-0000--0003--1263--2286-brightgreen)](https://orcid.org/0000-0003-1263-2286) |
+| Amy Heather | [![ORCID: Heather](https://img.shields.io/badge/ORCID-0000--0002--6596--3479-brightgreen)](https://orcid.org/0000-0002-6596-3479)|
 
 
 ## Modelling and Simulation Software
@@ -31,8 +36,11 @@ One of the benefits of a package like `simpy` is that it is written in standard 
 
 > Detailed documentation for `simpy` and additional models can be found here: https://simpy.readthedocs.io/en/latest/
 
+
 ## Web App
 
-The interactive web application was developed in `streamlit` and deployed freely, but with limited computational resources, on streamlit cloud.  
+The interactive web application was developed in `streamlit` and deployed freely, but with limited computational resources, on Streamlit Community Cloud.  
 
 > Details and documentation for both of these can be found here: https://docs.streamlit.io/ 
+
+end_2

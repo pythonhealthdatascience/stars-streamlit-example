@@ -1,4 +1,4 @@
-'''
+"""
 About page:
 
 Links to:
@@ -6,37 +6,25 @@ Links to:
 * Researchers via ORCIDs
 * Sim software
 ( Anything else relevant)
-'''
+"""
 
 import streamlit as st
-import urllib.request as request
+from scripts.read_file import read_file_contents
+from scripts.setup import page_config
 
-FILE = (
-    "https://raw.githubusercontent.com/pythonhealthdatascience/"
-    + "stars-streamlit-example/main/txt/acknowledgement.md"
-)
+# Set page config
+page_config()
 
+# File paths to text and images
+FILE = "txt/acknowledgement.md"
+STARS = "img/stars_logo_blue_text.png"
 
-def read_file_contents(path):
-    """
-    Download the content of a file from the GitHub Repo and return as a utf-8 string
+# Get text and partition into sections
+about = read_file_contents(FILE)
+about_1 = about.partition("start_1")[2].partition("end_1")[0]
+about_2 = about.partition("start_2")[2].partition("end_2")[0]
 
-    Notes:
-    -------
-        adapted from 'https://github.com/streamlit/demo-self-driving'
-
-    Parameters:
-    ----------
-    path: str
-        e.g. file_name.md
-
-    Returns:
-    --------
-    utf-8 str
-
-    """
-    response = request.urlopen(path)
-    return response.read().decode("utf-8")
-
-
-st.markdown(read_file_contents(FILE))
+# Display text and images
+st.markdown(about_1)
+st.image(STARS, output_format="PNG", width=400)
+st.markdown(about_2)
