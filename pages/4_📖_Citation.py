@@ -1,33 +1,11 @@
 import streamlit as st
-import urllib.request as request
+from scripts.read_file import read_file_contents
+from scripts.setup import page_config
 
-FILE = (
-    "https://raw.githubusercontent.com/pythonhealthdatascience/"
-    + "stars-streamlit-example/main/txt/citation.md"
-)
+# Set page config
+page_config()
 
-
-def read_file_contents(path):
-    """
-    Download the content of a file from the GitHub Repo and return as a utf-8 string
-
-    Notes:
-    -------
-        adapted from 'https://github.com/streamlit/demo-self-driving'
-
-    Parameters:
-    ----------
-    path: str
-        e.g. file_name.md
-
-    Returns:
-    --------
-    utf-8 str
-
-    """
-    response = request.urlopen(path)
-    return response.read().decode("utf-8")
-
+FILE = "txt/citation.md"
 
 st.title("Citation")
 st.markdown(read_file_contents(FILE))

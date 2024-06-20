@@ -1,56 +1,49 @@
 import streamlit as st
-from PIL import Image
-import urllib
-import urllib.request as request
+from scripts.read_file import read_file_contents
+from scripts.setup import page_config
+from scripts.arrival_chart import get_arrival_chart
 
-st.set_page_config(
-    # page_title="Ex-stream-ly Cool App",
-    # page_icon="🧊",
-    layout="wide",
-    initial_sidebar_state="expanded",
-    menu_items={
-        #    'Get Help': 'https://www.extremelycoolapp.com/help',
-        #    'Report a bug': "https://www.extremelycoolapp.com/bug",
-        "About": "## Treatment centre sim.  Adapted from Nelson (2013)."
-    },
-)
+# Set page config
+page_config()
 
-INFO_1 = """**A simple simulation model of a urgent care and treatment centre.**"""
+# File paths
+OVERVIEW = "txt/overview.md"
+PROCESS_IMG = "img/process_flow_img.png"
 
-OVERVIEW_PATH = (
-    "https://raw.githubusercontent.com/pythonhealthdatascience/"
-    + "stars-streamlit-example/main/txt/overview.md"
-)
+# Text to display
+INFO_1 = "**A simple simulation model of a urgent care and treatment centre.**"
+INFO_2 = """This treatment process diagram describes the simple rules that
+clinic has for caring for patients.
 
+**Trauma arrivals:** patients with severe illness and trauma that must first be
+stablised in a trauma room. These patients then undergo treatment in a cubicle
+before being discharged.
 
-def read_file_contents(path):
-    """
-    Download the content of a file from the GitHub Repo and return as a utf-8 string
+**Non-trauma arrivals:** patients with minor illness and no trauma go through
+registration and examination activities. A proportion of non-trauma patients
+require treatment in a cubicle before being discharged."""
 
-    Notes:
-    -------
-        adapted from 'https://github.com/streamlit/demo-self-driving'
-
-    Parameters:
-    ----------
-    path: str
-        e.g. file_name.md
-
-    Returns:
-    --------
-    utf-8 str
-
-    """
-    response = request.urlopen(path)
-    return response.read().decode("utf-8")
-
-
+# Title
 st.title("Treatment Centre Simulation Model")
 
-image = Image.open("img/nihr.png")
-st.image(image)
+# Get text and partition into sections
+overview = read_file_contents(OVERVIEW)
+overview_1 = overview.partition("start_1")[2].partition("end_1")[0]
+overview_2 = overview.partition("start_2")[2].partition("end_2")[0]
+overview_3 = overview.partition("start_3")[2].partition("end_3")[0]
 
+# Display info about treatment centre inc. graph with daily arrivals
 st.markdown(INFO_1)
+st.markdown(overview_1)
+with st.expander("View arrival pattern", expanded=False):
+    st.plotly_chart(get_arrival_chart(), use_container_width=True)
 
-# plain english summary
-st.markdown(read_file_contents(OVERVIEW_PATH))
+# Display info on model applications and how it is set up, including
+# the treatment process diagram
+st.markdown(overview_2)
+with st.expander("View treatment process", expanded=False):
+    st.image(PROCESS_IMG, width=800)
+    st.markdown(INFO_2)
+
+# Display info on using model to explore different scenarios
+st.markdown(overview_3)

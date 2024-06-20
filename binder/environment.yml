@@ -2,7 +2,6 @@ name: stars_streamlit
 channels:
   - conda-forge
 dependencies:
-  - bokeh=2.4.3
   - matplotlib=3.7.1
   - numpy=1.25.0
   - pandas=2.0.2
@@ -12,5 +11,5 @@ dependencies:
   - scipy=1.10.1
   - simpy=4.1.1
   - pip:
-    - streamlit==1.33.0
-    - streamlit-bokeh-events==0.1.2
+    - streamlit==1.35.0
+    - treat-sim==2.1.0
