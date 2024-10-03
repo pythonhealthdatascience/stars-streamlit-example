@@ -11,5 +11,5 @@ dependencies:
   - scipy=1.10.1
   - simpy=4.1.1
   - pip:
-    - streamlit==1.35.0
+    - streamlit==1.39.0
     - treat-sim==2.2.0
