@@ -1,5 +1,8 @@
 import streamlit as st
+import pandas as pd
 from treat_sim import model as md
+from treat_sim import datasets
+from scripts.arrival_chart import get_arrival_chart, convert_df
 from scripts.more_plot import more_plotly
 from scripts.setup import page_config
 from scripts.label_results import label_results
@@ -51,6 +54,72 @@ between the runs. These are coloured:
 # Create widgets to adjust model parameters within the sidebar
 with st.sidebar:
     st.markdown("# Parameters")
+
+    # Arrival profile
+    st.markdown("## Arrivals")
+    # Dictionary with simple key (used in code) and detailed label (displayed)
+    arrival_options = {
+        "Use default arrival profile": "default",
+        "Use alternative arrival profile": "alternative",
+        "Upload custom arrival profile": "custom"}
+    # Radio button to choose arrival profile, which maps to simple key
+    arrival_choice = arrival_options[
+        st.radio(
+            label="Arrival profile",
+            label_visibility="collapsed",  # No label, as is covered by title
+            options=arrival_options.keys(),
+            captions=["""Default arrival profile from Nelson 2013, as
+                      displayed on the 'Overview' page""",
+                      """Altered default profile with higher peak in arrivals
+                      at 6pm""",
+                      """CSV file with arrivals rates between 6am and 12am 
+                      in 60 minute intervals. Should have two columns: period
+                      (e.g. '6AM-7AM') and arrival_rate (e.g. 14.5)"""],
+            help="please work!")]
+
+    # Set defaults for arrivals to None
+    arrival_profile = None
+    uploaded_arrivals = None
+
+    # If choose default or alternative, then get appropriate dataset
+    if arrival_choice == "default":
+        arrival_profile = datasets.load_nelson_arrivals()
+    elif arrival_choice == "alternative":
+        arrival_profile = datasets.load_alternative_arrivals()
+    # If choose custom upload, display upload widget with instructions
+    elif arrival_choice == "custom":
+        # Get arrival template
+        arrival_template = convert_df(pd.read_csv("data/arrivals.csv"))
+        # Download template arrival profile csv
+        st.download_button(
+            label="Download template arrival profile",
+            data=arrival_template,
+            file_name="data/arrivals.csv",
+            mime="text/csv")
+        # Upload customised arrival profile csv
+        uploaded_arrivals = st.file_uploader(
+            label="Please **upload** your arrival profile:")
+
+    # If a custom arrival profile has been uploaded, download it
+    if uploaded_arrivals is not None:
+        arrival_profile = pd.read_csv(uploaded_arrivals)
+
+    # Run check that arrival profile exists - if not will create error in main
+    # panel of app with message asking to upload or choose a provided option
+    if arrival_profile is None:
+        raise NameError("""Please upload an arrival profile, or return to
+                        provided default or alternative profiles.""")
+
+    # Run check that arrival profile is valid - if not, will create error in
+    # main panel of app with a descriptive errror message
+    datasets.valid_arrival_profile(arrival_profile)
+
+    # View chosen arrival profile
+    with st.expander("View plot of chosen arrival profile", expanded=False):
+        # Create figure and reduce height, then display on Streamlit
+        fig = get_arrival_chart(arrival_profile)
+        fig.update_layout(height=250)
+        st.plotly_chart(fig)
 
     # Number of rooms
     st.markdown("## Capacity constraints")
@@ -109,8 +178,9 @@ with st.sidebar:
         md.DEFAULT_NON_TRAUMA_TREAT_VAR, 0.5,
         help="Variance in length of non-trauma treatment (min)")
 
-# Set up scenario
-args = md.Scenario()
+# Set up scenario (have to set arrival profile when define class, else it
+# won't run the process of setting it to arrivals, from __init__)
+args = md.Scenario(arrival_profile=arrival_profile)
 args.n_triage = triage_bays
 args.n_exam = exam_rooms
 args.n_cubicles_1 = treat_rooms
