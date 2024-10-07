@@ -9,7 +9,7 @@ We have developed a computer based tool for managers of a health clinic for pati
 * **Minor trauma**, e.g. impact injuries, broken bones, strains or cuts.
 * **Non-trauma**, e.g. acute sickness, pain, and general feelings of being unwell.
 
-Patients do not require an appointment to attend the clinic. Patients arrive in an ad-hoc manner over the day, but there is a well known **pattern of peak and quiet times** throughout the day.
+Using the default arrival profile, patients do not require an appointment to attend the clinic. Patients arrive in an ad-hoc manner over the day, but there is a well known **pattern of peak and quiet times** throughout the day.
 
 end_1
 start_2

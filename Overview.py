@@ -2,6 +2,7 @@ import streamlit as st
 from scripts.read_file import read_file_contents
 from scripts.setup import page_config
 from scripts.arrival_chart import get_arrival_chart
+from treat_sim.datasets import load_nelson_arrivals
 
 # Set page config
 page_config()
@@ -35,8 +36,9 @@ overview_3 = overview.partition("start_3")[2].partition("end_3")[0]
 # Display info about treatment centre inc. graph with daily arrivals
 st.markdown(INFO_1)
 st.markdown(overview_1)
-with st.expander("View arrival pattern", expanded=False):
-    st.plotly_chart(get_arrival_chart(), use_container_width=True)
+with st.expander("View default arrival pattern", expanded=False):
+    st.plotly_chart(get_arrival_chart(load_nelson_arrivals()),
+                    use_container_width=True)
 
 # Display info on model applications and how it is set up, including
 # the treatment process diagram
