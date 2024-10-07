@@ -1,19 +1,20 @@
 import plotly.express as px
-import pandas as pd
-
-from treat_sim import model as md
+import streamlit as st
 
 
-def get_arrival_chart():
+def get_arrival_chart(arrivals):
     """
-    Create and return a plotly express bar chart of
-    arrivals
+    Create and return a plotly express bar chart of arrivals
+
+    Parameters:
+    -----------
+    arrivals : pandas dataframe
+      Dataframe with hourly arrivals
 
     Returns:
     --------
     plotly figure.
     """
-    arrivals = pd.read_csv(md.NSPP_PATH)
     fig = px.bar(arrivals, x="period", y="arrival_rate",
                  labels={
                     "period": "hour of day",
@@ -21,3 +22,18 @@ def get_arrival_chart():
                  })
 
     return fig
+
+
+@st.cache_data
+def convert_df(df):
+    """
+    Convert dataframe to utf-8, cacheing it to prevent computation on
+    every rerun. Used when downloading template arrival profile.
+
+    Source: https://docs.streamlit.io/develop/api-reference/widgets/st.download_button
+
+    Parameters:
+    -----------
+    df : pandas dataframe
+    """
+    return df.to_csv().encode("utf-8")

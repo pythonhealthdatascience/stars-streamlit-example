@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Consistent identifier (represents all versions, resolves to latest): [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10055168.svg)](https://doi.org/10.5281/zenodo.10055168)
 
+## Unreleased - Date - DOI
+
+Add choice of arrival profiles, or custom upload.
+
+### Added
+
+* For interactive simulation, users can choose between default arrival profile, alternative arrival profile, or a custom arrival profile that they upload (with template provided)
+
+### Changed
+
+* Upgraded to `treat-sim==2.2.0` and `streamlit==1.39.0`
+
 ## [v4.0.0](https://github.com/pythonhealthdatascience/stars-streamlit-example/releases/tag/v4.0.0) - 2024-06-20 - [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.12187699.svg)](https://doi.org/10.5281/zenodo.12187699)
 
 Modifications to help improve user experience and clarity of the application and repository.
