@@ -51,6 +51,32 @@ between the runs. These are coloured:
     "**likely**" results)
     * Red if they fall outside these (indicating "**unlikely**" results)"""
 
+
+# Amended version of a function from treat_sim.datasets
+def valid_profile(arrival_profile):
+    """
+    Provides a simple check that a dataframe containing an arrival
+    profile is in a valid format.
+
+    Raise an exception if invalid
+    """
+
+    if not isinstance(arrival_profile, pd.DataFrame):
+        return """Invalid arrival profile. Profile must a DataFrame
+        in the correct format."""
+
+    if not {"period", "arrival_rate"}.issubset(arrival_profile.columns):
+        return """Invalid arrival profile. DataFrame must contain period and
+        arrival_rate columns"""
+
+    if arrival_profile.shape[0] != 18:
+        return f"""Invalid arrival profile. Profile should contain 18 1-hour
+        periods. But selected DataFrame contains {arrival_profile.shape[0]}
+        rows."""
+
+    return True
+
+
 # Create widgets to adjust model parameters within the sidebar
 with st.sidebar:
     st.markdown("# Parameters")
@@ -104,22 +130,32 @@ with st.sidebar:
     if uploaded_arrivals is not None:
         arrival_profile = pd.read_csv(uploaded_arrivals)
 
-    # Run check that arrival profile exists - if not will create error in main
-    # panel of app with message asking to upload or choose a provided option
+    # Run check that arrival profile exists - if not, will prevent from
+    # running simulation
     if arrival_profile is None:
-        raise NameError("""Please upload an arrival profile, or return to
-                        provided default or alternative profiles.""")
+        st.session_state.disabled = True
+    else:
+        st.session_state.disabled = False
 
-    # Run check that arrival profile is valid - if not, will create error in
-    # main panel of app with a descriptive errror message
-    datasets.valid_arrival_profile(arrival_profile)
+    # Run check that arrival profile is valid - if not, will disable run
+    # simulation and plot of arrival profile, and provide an informative error
+    # message
+    if arrival_profile is not None:
+        if valid_profile(arrival_profile) is not True:
+            st.session_state.disabled = True
+            st.error(valid_profile(arrival_profile), icon="🚨")
+        else:
+            st.session_state.disabled = False
 
-    # View chosen arrival profile
-    with st.expander("View plot of chosen arrival profile", expanded=False):
-        # Create figure and reduce height, then display on Streamlit
-        fig = get_arrival_chart(arrival_profile)
-        fig.update_layout(height=250)
-        st.plotly_chart(fig)
+    # View chosen arrival profile, if it has been uploaded
+    if uploaded_arrivals is not None:
+        if valid_profile(arrival_profile) is True:
+            with st.expander("View plot of chosen arrival profile",
+                             expanded=False):
+                # Create figure and reduce height, then display on Streamlit
+                fig = get_arrival_chart(arrival_profile)
+                fig.update_layout(height=250)
+                st.plotly_chart(fig)
 
     # Number of rooms
     st.markdown("## Capacity constraints")
@@ -178,21 +214,6 @@ with st.sidebar:
         md.DEFAULT_NON_TRAUMA_TREAT_VAR, 0.5,
         help="Variance in length of non-trauma treatment (min)")
 
-# Set up scenario (have to set arrival profile when define class, else it
-# won't run the process of setting it to arrivals, from __init__)
-args = md.Scenario(arrival_profile=arrival_profile)
-args.n_triage = triage_bays
-args.n_exam = exam_rooms
-args.n_cubicles_1 = treat_rooms
-args.trauma_treat_mean = trauma_mean
-args.trauma_treat_var = trauma_var
-args.non_trauma_treat_p = nontrauma_treat
-args.non_trauma_treat_mean = nt_trauma_mean
-args.non_trauma_treat_var = nt_trauma_var
-args.prob_trauma = trauma_p
-args.exam_mean = exam_mean
-args.exam_var = exam_var
-
 # Title
 st.title("Interactive simulation")
 
@@ -210,7 +231,24 @@ replications = st.number_input(
     "Multiple runs", value=30, placeholder="Enter no. replications to run...",
     help="Number of replications to run")
 
-if st.button("Simulate treatment centre"):
+if st.button("Simulate treatment centre",
+             disabled=st.session_state.get("disabled", True)):
+
+    # Set up scenario (have to set arrival profile when define class, else it
+    # won't run the process of setting it to arrivals, from __init__)
+    args = md.Scenario(arrival_profile=arrival_profile)
+    args.n_triage = triage_bays
+    args.n_exam = exam_rooms
+    args.n_cubicles_1 = treat_rooms
+    args.trauma_treat_mean = trauma_mean
+    args.trauma_treat_var = trauma_var
+    args.non_trauma_treat_p = nontrauma_treat
+    args.non_trauma_treat_mean = nt_trauma_mean
+    args.non_trauma_treat_var = nt_trauma_var
+    args.prob_trauma = trauma_p
+    args.exam_mean = exam_mean
+    args.exam_var = exam_var
+
     # Get results
     with st.spinner("Simulating the treatment centre..."):
         results = md.multiple_replications(args, n_reps=replications)
@@ -238,3 +276,9 @@ if st.button("Simulate treatment centre"):
         more_fig = more_plotly(results["09_throughput"].to_numpy(),
                                x_label="Average Daily Throughput")
         st.plotly_chart(more_fig, use_container_width=True)
+
+# Message that displays if on custom arrival profile but no upload
+if st.session_state.get("disabled", True):
+    st.markdown("""**Note:** This button has been disabled as you have not
+        yet uploaded a valid custom arrival profile. Please upload a valid
+        profile, or return to the provided default or alternative profiles.""")
