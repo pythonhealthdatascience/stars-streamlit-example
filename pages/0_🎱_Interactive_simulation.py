@@ -221,7 +221,7 @@ st.title("Interactive simulation")
 st.markdown(INFO_1)
 with st.expander("Model recap", expanded=False):
     st.markdown(INFO_2)
-    st.image(PROCESS_IMG, width=None)
+    st.image(PROCESS_IMG, width="stretch")
 
 # Suggestion to vary parameters
 st.markdown(INFO_3)

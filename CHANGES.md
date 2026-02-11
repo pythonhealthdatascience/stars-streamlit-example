@@ -7,7 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Consistent identifier (represents all versions, resolves to latest): [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10055168.svg)](https://doi.org/10.5281/zenodo.10055168)
 
-## Unreleased - Date - DOI
+## v5.0.0
+
+Environment upgrades and minor patches
+
+### Changed
+
+* Upgraded to `treat-sim==3.0.0` so runnable with Python 3.12 and `streamlit==1.54.0`
+
+### Fixed
+
+* streanmlit's `st.image` now uses `width='stretch'` as opposed to `None` to avoid error.
+
+## v4.1.0
 
 Add choice of arrival profiles, or custom upload.
 
